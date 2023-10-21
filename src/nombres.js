@@ -1,4 +1,4 @@
 function obtenerNombres() {
-  return ["KataBankOCR","KataFizzBuzz"];
+  return ["KataBankOCR","KataFizzBuzz","FooBarQix","KataPotter"];
   }
   export default obtenerNombres;
