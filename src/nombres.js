@@ -1,4 +1,7 @@
+const nombres = ["KataBankOCR", "KataFizzBuzz", "FooBarQix", "KataPotter"];
+
 function obtenerNombres() {
-  return ["KataBankOCR","KataFizzBuzz","FooBarQix","KataPotter"];
+  return nombres;
   }
+
   export default obtenerNombres;
