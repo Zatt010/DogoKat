@@ -9,6 +9,6 @@ describe("Obtener Lista de Kata", () => {
 
 describe("Obtener Detalles de Kata", () => {
   it("Obtener detalle de primera Kata", () => {
-    expect(detallesKata()).toEqual("Detalles de la primera kata");
+    expect(detallesKata(0)).toEqual("Detalles de la primera kata");
   });
 });

@@ -5,8 +5,8 @@ function obtenerNombres() {
   return nombres;
 }
 
-function detallesKata() {
-  return detallesKatas[0];
+function detallesKata(kataIndex) {
+  return detallesKatas[kataIndex];
 }
 
 export { obtenerNombres, detallesKata };
