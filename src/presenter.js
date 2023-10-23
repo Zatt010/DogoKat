@@ -1,4 +1,4 @@
-import { obtenerNombres, detallesKata } from './nombres.js';
+import { obtenerNombres, detallesKata } from './Kata.js';
 document.addEventListener('DOMContentLoaded', () => {
   const nombresKatasDiv = document.querySelector('.nombres-katas');
   const detalleKataDiv = document.querySelector('.detalle-Kata');

@@ -9,4 +9,11 @@ function detallesKata(kataIndex) {
   return detallesKatas[kataIndex];
 }
 
-export { obtenerNombres, detallesKata };
+function crearKata(nombreKata) {
+  if (nombreKata.length <= 100) {
+    return true;
+  } else {
+    return false;
+  }
+}
+export { obtenerNombres, detallesKata,crearKata };
