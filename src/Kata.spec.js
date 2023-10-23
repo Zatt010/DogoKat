@@ -18,7 +18,9 @@ describe("Obtener Detalles de Kata", () => {
 
 describe("Creacion de Kata", () => {
   it("Obtener Posicion de la nueva Kata", () => {
-    const resultado = crearKata("Katatry");
-    expect(resultado).toBe(4);
+    const nombreKata = "Kata Try";
+    const detalleKata = "Detalles de la nueva kata de prueba";
+    const resultado = crearKata(nombreKata, detalleKata);
+    expect(resultado).toBe(true);
   });
 });
