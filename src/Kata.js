@@ -11,7 +11,7 @@ function detallesKata(kataIndex) {
 
 function crearKata(nombreKata) {
   if (nombreKata.length <= 100) {
-    return true;
+    return nombres.length;
   } else {
     return false;
   }

@@ -17,12 +17,8 @@ describe("Obtener Detalles de Kata", () => {
 });
 
 describe("Creacion de Kata", () => {
-  it("Verificacion, nombre < 100 caracteres formato VALIDO", () => {
+  it("Obtener Posicion de la nueva Kata", () => {
     const resultado = crearKata("Katatry");
-    expect(resultado).toBe(true);
-  });
-  it("Verificacion, nombre > 100 caracteres formato INVALIDO", () => {
-    const resultado = crearKata("Nombre de kata con más de 100 caracteres, como un ejemplo largo y repetitivo".repeat(3));
-    expect(resultado).toBe(false);
+    expect(resultado).toBe(4);
   });
 });
