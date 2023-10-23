@@ -1,10 +1,5 @@
 name: javascript-CI
 
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
 
 jobs:
   ci_to_main:
