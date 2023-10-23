@@ -1,8 +1,11 @@
 import { obtenerNombres, detallesKata } from './Kata.js';
+import { busquedaSimple } from './Busqueda.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const nombresKatasDiv = document.querySelector('.nombres-katas');
   const detalleKataDiv = document.querySelector('.detalle-Kata');
+  const busquedaButton = document.getElementById('busquedaButton');
+  const busquedaInput = document.getElementById('busquedaInput');
   const creacionKataButton = document.getElementById('creacionKataButton');
   const contenidoPrincipal = document.getElementById('contenido-principal');
   const contenidoCreacion = document.getElementById('contenido-creacion');
@@ -23,6 +26,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const detalles = detallesKata(kataIndex);
     detalleKataDiv.innerHTML = detalles;
   }
+
+  busquedaButton.addEventListener('click', () => {
+    const searchTerm = busquedaInput.value.trim();
+    const resultados = busquedaSimple(searchTerm);
+    if (resultados && resultados.length > 0) {
+      // Si se encontraron resultados, mostrar los nombres en el mismo div
+      nombresKatasDiv.innerHTML = `<ul>${resultados.map((nombre, index) => `<li><a href="#" data-kata="${index}">${nombre}</a></li>`).join('')}</ul>`;
+    } else {
+      // Si no se encontraron resultados, mostrar "Kata no encontrada" en el mismo div
+      nombresKatasDiv.innerHTML = 'Kata no encontrada';
+    }
+  });
+
 
   // Manejar el clic del botón para ir a la página de creación de Kata
   creacionKataButton.addEventListener('click', () => {
