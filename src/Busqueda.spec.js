@@ -1,7 +1,13 @@
 import { busquedaSimple } from "./Busqueda.js";
 
 describe("Busqueda de Kata por nombre", () => {
-    it("Recuperar los nombres desde Kata.js", () => {
-        expect(busquedaSimple("kataa")).toEqual(["KataBankOCR","KataFizzBuzz","FooBarQix","KataPotter"]);
+    it("Buscar Kata por nombre", () => {
+        const result = busquedaSimple("kata");
+        expect(result).toEqual(expect.arrayContaining(["KataBankOCR", "KataFizzBuzz"]));
+    });
+
+    it("Busqueda inexistente", () => {
+        const result = busquedaSimple("ines");
+        expect(result).toEqual([]);
     });
 });
