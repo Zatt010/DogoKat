@@ -1,5 +1,6 @@
 import { obtenerNombres, detallesKata, dificultadKata } from './Kata.js';
 import { busquedaSimple } from './Busqueda.js';
+import { agruparKatasPorDificultad } from './filtros.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const nombresKatasDiv = document.querySelector('.nombres-katas');
@@ -10,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const contenidoPrincipal = document.getElementById('contenido-principal');
   const contenidoCreacion = document.getElementById('contenido-creacion');
   const nombres = obtenerNombres();
+  const katasPorDificultad = agruparKatasPorDificultad();
 
   // Mostrar nombres en el HTML y manejo de los clics
   nombresKatasDiv.innerHTML = `<ul>${nombres.map((nombre, index) => `<li><a href="#" data-kata="${index}">${nombre}</a></li>`).join('')}</ul>`;
@@ -27,16 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     detalleKataDiv.innerHTML = detalles;
   }
 
-  const katasPorDificultad = {};
-  nombres.forEach((nombre, index) => {
-    const dificultad = dificultadKata(index);
-    if (!katasPorDificultad[dificultad]) {
-      katasPorDificultad[dificultad] = [];
-    }
-    katasPorDificultad[dificultad].push({ nombre, index });
-  });
-
-  // Mostrar nombres por dificultad en el HTML y manejo de clics
+   // Mostrar nombres por dificultad en el HTML y manejo de clics
   for (const dificultad in katasPorDificultad) {
     const katas = katasPorDificultad[dificultad];
     const kataList = katas.map(
@@ -45,10 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ).join('');
     nombresKatasDiv.innerHTML += `<h2>${dificultad}</h2><ul>${kataList}</ul>`;
   }
-
-
-
-
 
   // Manejar el clic del botón para ir a la página de creación de Kata
   creacionKataButton.addEventListener('click', () => {
