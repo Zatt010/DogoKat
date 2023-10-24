@@ -1,19 +1,27 @@
-let nombres = ["KataBankOCR", "KataFizzBuzz", "FooBarQix", "KataPotter"];
-let detallesKatas = 
-["Detalles de la primera kata", "Detalles de la segunda kata", "Detalles de la tercera kata", "Detalles de la cuarta kata"];
+class Kata{
+  constructor(nombre, detalle){
+    this.nombre = nombre;
+    this.detalle = detalle;
+  }
+}
+let Katas = [
+  new Kata("KataBankOCR", "Detalles de la primera kata"),
+  new Kata("KataFizzBuzz", "Detalles de la segunda kata"),
+  new Kata("FooBarQix", "Detalles de la tercera kata"),
+  new Kata("KataPotter", "Detalles de la cuarta kata")
+]
 
 function obtenerNombres() {
-  return nombres;
+  return Katas.map(Kata => Kata.nombre);
 }
 
 function detallesKata(kataIndex) {
-  return detallesKatas[kataIndex];
+  return Katas[kataIndex].detalle;
 }
 
 function crearKata(nombreKata, detalleKata) {
   if (nombreKata.length <= 100) {
-    nombres.push(nombreKata);
-    detallesKatas.push(detalleKata);
+    Katas.push(new Kata(nombreKata, detalleKata));
     return true
   } else {
     return false;
