@@ -27,6 +27,19 @@ document.addEventListener('DOMContentLoaded', () => {
     detalleKataDiv.innerHTML = detalles;
   }
 
+
+  // Manejar el clic del botón para ir a la página de creación de Kata
+  creacionKataButton.addEventListener('click', () => {
+    // Ocultar contenido principal y mostrar contenido de creación
+    contenidoPrincipal.style.display = 'none';
+    contenidoCreacion.style.display = 'block';
+    fetch('./pages/CreacionKatas.html')
+      .then(response => response.text())
+      .then(data => {
+        contenidoCreacion.innerHTML = data;
+      });
+  });
+
   busquedaButton.addEventListener('click', () => {
     const searchTerm = busquedaInput.value.trim();
     const resultados = busquedaSimple(searchTerm);
@@ -39,16 +52,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-
-  // Manejar el clic del botón para ir a la página de creación de Kata
-  creacionKataButton.addEventListener('click', () => {
-    // Ocultar contenido principal y mostrar contenido de creación
-    contenidoPrincipal.style.display = 'none';
-    contenidoCreacion.style.display = 'block';
-    fetch('../pages/creacionKata.html')
-      .then(response => response.text())
-      .then(data => {
-        contenidoCreacion.innerHTML = data;
-      });
-  });
 });
