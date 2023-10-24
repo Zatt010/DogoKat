@@ -28,8 +28,8 @@ describe("Creacion de Kata", () => {
 describe("Obtener Dificultad de Kata", () => {
   it("Obtener dificultad de primera Kata", () => {
     expect(dificultadKata(0)).toEqual("Principiante");
-  });/*
-  it("Obtener detalle de la cuarta Kata", () => {
-    expect(detallesKata(3)).toEqual("Detalles de la cuarta kata");
-  });*/
+  });
+  it("Obtener dificultad de la cuarta Kata", () => {
+    expect(dificultadKata(3)).toEqual("Avanzado");
+  });
 });
