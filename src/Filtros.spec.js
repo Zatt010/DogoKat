@@ -16,4 +16,10 @@ describe("Agrupacion de Kata por dificultad", () => {
             ]
           });
     });
+    it("Verificar existencia de las dificultades", () => {
+        const result = agruparKatasPorDificultad();
+        expect(result).toHaveProperty("Principiante");
+        expect(result).toHaveProperty("Intermedio");
+        expect(result).toHaveProperty("Avanzado");
+      });
 });
