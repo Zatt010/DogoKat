@@ -20,13 +20,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (event.target.tagName === 'A') {
       event.preventDefault();
       const kataIndex = event.target.getAttribute('data-kata');
+      //const dificultad = event.target.getAttribute('data-dificultad');
       mostrarDetallesDeKata(kataIndex);
+      //mostrarKatasPorDificultad(dificultad);
     }
   });
 
   function mostrarDetallesDeKata(kataIndex) {
     const detalles = detallesKata(kataIndex);
     detalleKataDiv.innerHTML = detalles;
+  }
+  
+  function mostrarKatasPorDificultad(dificultad) {
+    const katas = katasPorDificultad[dificultad];
+    if (katas) {
+      const kataList = katas.map(
+        ({ nombre, index }) =>
+          `<li><a href="#" data-kata="${index}" data-dificultad="${dificultad}">${nombre}</a></li>`
+      ).join('');
+      nombresKatasDiv.innerHTML = `<h2>${dificultad}</h2><ul>${kataList}</ul>`;
+    }
   }
 
    // Mostrar nombres por dificultad en el HTML y manejo de clics
@@ -35,10 +48,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const katas = katasPorDificultad[dificultad];
     const kataList = katas.map(
       ({ nombre, index }) =>
-        `<li><a href="#" data-kata="${index}">${nombre}</a></li>`
+        `<li><a href="#" data-kata="${index}" data-dificultad="${dificultad}">${nombre}</a></li>`
     ).join('');
-    nombresKatasDiv.innerHTML += `<h2>${dificultad}</h2><ul>${kataList}</ul>`;
+    nombresKatasDiv.innerHTML += `<h2 id="${dificultad}-title">${dificultad}</h2><ul>${kataList}</ul>`;
    }
+  });
+
+  ['Avanzado', 'Intermedio', 'Principiante'].forEach((dificultad) => {
+    const dificultadTitle = document.getElementById(`${dificultad}-title`);
+    if (dificultadTitle) {
+      dificultadTitle.addEventListener('click', () => {
+        mostrarKatasPorDificultad(dificultad);
+      });
+    }
   });
 
   // Manejar el clic del botón para ir a la página de creación de Kata
