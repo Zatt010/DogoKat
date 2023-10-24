@@ -1,6 +1,6 @@
 import { obtenerNombres, detallesKata, dificultadKata } from './Kata.js';
 import { busquedaSimple } from './Busqueda.js';
-import { agruparKatasPorDificultad } from './filtros.js';
+import { agruparKatasPorDificultad } from './Filtros.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const nombresKatasDiv = document.querySelector('.nombres-katas');
