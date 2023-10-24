@@ -30,14 +30,16 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
    // Mostrar nombres por dificultad en el HTML y manejo de clics
-  for (const dificultad in katasPorDificultad) {
+  ['Avanzado', 'Intermedio', 'Principiante'].forEach((dificultad) =>{
+   if (katasPorDificultad[dificultad]) {
     const katas = katasPorDificultad[dificultad];
     const kataList = katas.map(
       ({ nombre, index }) =>
         `<li><a href="#" data-kata="${index}">${nombre}</a></li>`
     ).join('');
     nombresKatasDiv.innerHTML += `<h2>${dificultad}</h2><ul>${kataList}</ul>`;
-  }
+   }
+  });
 
   // Manejar el clic del botón para ir a la página de creación de Kata
   creacionKataButton.addEventListener('click', () => {
