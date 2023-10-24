@@ -22,7 +22,6 @@
     "jest": "^29.7.0",
     "parcel": "^2.8.3"
   },
-  "main": "cypress.config.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Zatt010/DogoKat.git"
