@@ -21,6 +21,10 @@ function detallesKata(kataIndex) {
   return Katas[kataIndex].detalle;
 }
 
+function dificultadKata(kataIndex) {
+  return Katas[kataIndex].dificultad;
+}
+
 function crearKata(nombreKata, detalleKata, dificultadKata) {
   if (nombreKata.length <= 100) {
     Katas.push(new Kata(nombreKata, detalleKata, dificultadKata));
@@ -29,4 +33,4 @@ function crearKata(nombreKata, detalleKata, dificultadKata) {
     return false;
   }
 }
-export { obtenerNombres, detallesKata,crearKata };
+export { obtenerNombres, detallesKata, crearKata, dificultadKata };
