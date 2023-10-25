@@ -41,4 +41,7 @@ describe("Obtener Categoria de Kata", () => {
   it("Obtener categoria de tercera kata", () => {
     expect(categoriaKata(3)).toEqual("Algoritmos");
   });
+  it("Obtener categoria categoria nro 2", () => {
+    expect(categoriaKata(1)).toEqual("Juegos");
+  });
 });
