@@ -45,6 +45,9 @@ describe("Creacion de catalogo", () => {
   it("Obtener categoria categoria nro 2", () => {
     expect(categoriaKata(2)).toEqual("Tecnologías específicas");
   });
+  it("Obtener categoria categoria nro 3", () => {
+    expect(categoriaKata(3)).toEqual("Algoritmo");
+  });
     
 });
 
