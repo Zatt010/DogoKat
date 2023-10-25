@@ -1,5 +1,6 @@
-import { obtenerNombres, detallesKata } from './Kata.js';
+import { obtenerNombres, detallesKata, dificultadKata } from './Kata.js';
 import { busquedaSimple } from './Busqueda.js';
+import { agruparKatasPorDificultad } from './Filtros.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const nombresKatasDiv = document.querySelector('.nombres-katas');
@@ -10,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const contenidoPrincipal = document.getElementById('contenido-principal');
   const contenidoCreacion = document.getElementById('contenido-creacion');
   const nombres = obtenerNombres();
+  const katasPorDificultad = agruparKatasPorDificultad();
 
   // Mostrar nombres en el HTML y manejo de los clics
   nombresKatasDiv.innerHTML = `<ul>${nombres.map((nombre, index) => `<li><a href="#" data-kata="${index}">${nombre}</a></li>`).join('')}</ul>`;
@@ -18,7 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (event.target.tagName === 'A') {
       event.preventDefault();
       const kataIndex = event.target.getAttribute('data-kata');
+      //const dificultad = event.target.getAttribute('data-dificultad');
       mostrarDetallesDeKata(kataIndex);
+      //mostrarKatasPorDificultad(dificultad);
     }
   });
 
@@ -26,6 +30,50 @@ document.addEventListener('DOMContentLoaded', () => {
     const detalles = detallesKata(kataIndex);
     detalleKataDiv.innerHTML = detalles;
   }
+  
+  function mostrarKatasPorDificultad(dificultad) {
+    const katas = katasPorDificultad[dificultad];
+    if (katas) {
+      const kataList = katas.map(
+        ({ nombre, index }) =>
+          `<li><a href="#" data-kata="${index}" data-dificultad="${dificultad}">${nombre}</a></li>`
+      ).join('');
+      nombresKatasDiv.innerHTML = `<h2>${dificultad}</h2><ul>${kataList}</ul>`;
+    }
+  }
+
+   // Mostrar nombres por dificultad en el HTML y manejo de clics
+  ['Avanzado', 'Intermedio', 'Principiante'].forEach((dificultad) =>{
+   if (katasPorDificultad[dificultad]) {
+    const katas = katasPorDificultad[dificultad];
+    const kataList = katas.map(
+      ({ nombre, index }) =>
+        `<li><a href="#" data-kata="${index}" data-dificultad="${dificultad}">${nombre}</a></li>`
+    ).join('');
+    nombresKatasDiv.innerHTML += `<h2 id="${dificultad}-title">${dificultad}</h2><ul>${kataList}</ul>`;
+   }
+  });
+
+  ['Avanzado', 'Intermedio', 'Principiante'].forEach((dificultad) => {
+    const dificultadTitle = document.getElementById(`${dificultad}-title`);
+    if (dificultadTitle) {
+      dificultadTitle.addEventListener('click', () => {
+        mostrarKatasPorDificultad(dificultad);
+      });
+    }
+  });
+
+  // Manejar el clic del botón para ir a la página de creación de Kata
+  creacionKataButton.addEventListener('click', () => {
+    // Ocultar contenido principal y mostrar contenido de creación
+    contenidoPrincipal.style.display = 'none';
+    contenidoCreacion.style.display = 'block';
+    fetch('./pages/CreacionKatas.html')
+      .then(response => response.text())
+      .then(data => {
+        contenidoCreacion.innerHTML = data;
+      });
+  });
 
   busquedaButton.addEventListener('click', () => {
     const searchTerm = busquedaInput.value.trim();
@@ -39,16 +87,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-
-  // Manejar el clic del botón para ir a la página de creación de Kata
-  creacionKataButton.addEventListener('click', () => {
-    // Ocultar contenido principal y mostrar contenido de creación
-    contenidoPrincipal.style.display = 'none';
-    contenidoCreacion.style.display = 'block';
-    fetch('../pages/creacionKata.html')
-      .then(response => response.text())
-      .then(data => {
-        contenidoCreacion.innerHTML = data;
-      });
-  });
 });
