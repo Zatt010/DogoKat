@@ -1,4 +1,4 @@
-import { obtenerNombres, detallesKata, dificultadKata } from './Kata.js';
+import { obtenerNombres, detallesKata, categoriaKata, dificultadKata } from './Kata.js';
 import { busquedaSimple } from './Busqueda.js';
 import { agruparKatasPorDificultad } from './Filtros.js';
 
@@ -62,6 +62,38 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
+
+function mostrarKatasPorCategoria(categoria) {
+  const katas = katasPorCategoria[categoria];
+  if (katas) {
+    const kataList = katas.map(
+      ({ nombre, index }) =>
+        `<li><a href="#" data-kata="${index}" data-categoria="${categoria}">${nombre}</a></li>`
+    ).join('');
+    nombresKatasDiv.innerHTML = `<h2>${categoria}</h2><ul>${kataList}</ul>`;
+  }
+}
+
+// Mostrar katas por categoría en el HTML y manejo de clics
+['Matemáticas', 'Juegos', 'Tecnología'].forEach((categoria) => {
+  if (katasPorCategoria[categoria]) {
+    const katas = katasPorCategoria[categoria];
+    const kataList = katas.map(
+      ({ nombre, index }) =>
+        `<li><a href="#" data-kata="${index}" data-categoria="${categoria}">${nombre}</a></li>`
+    ).join('');
+    nombresKatasDiv.innerHTML += `<h2 id="${categoria}-title">${categoria}</h2><ul>${kataList}</ul>`;
+  }
+});
+
+['Matemáticas', 'Juegos', 'Tecnología'].forEach((categoria) => {
+  const categoriaTitle = document.getElementById(`${categoria}-title`);
+  if (categoriaTitle) {
+    categoriaTitle.addEventListener('click', () => {
+      mostrarKatasPorCategoria(categoria);
+    });
+  }
+});
 
   // Manejar el clic del botón para ir a la página de creación de Kata
   creacionKataButton.addEventListener('click', () => {
