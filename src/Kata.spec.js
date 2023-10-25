@@ -1,4 +1,4 @@
-import { obtenerNombres, detallesKata, crearKata, dificultadKata } from "./Kata.js";
+import { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata } from "./Kata.js";
 
 
 describe("Obtener Lista de Kata", () => {
@@ -31,5 +31,11 @@ describe("Obtener Dificultad de Kata", () => {
   });
   it("Obtener dificultad de la cuarta Kata", () => {
     expect(dificultadKata(3)).toEqual("Avanzado");
+  });
+});
+
+describe("Obtener Categoria de Kata", () => {
+  it("Obtener categoria de primera Kata", () => {
+    expect(categoriaKata(0)).toEqual("Matematicas");
   });
 });
