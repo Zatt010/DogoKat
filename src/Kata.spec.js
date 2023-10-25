@@ -40,10 +40,10 @@ describe("Creacion de catalogo", () => {
     expect(categorias).toEqual([]);
   });*/
   it("Obtener primera categoria", () => {
-    expect(categoriaKata(0)).toEqual("Orientado a las matemáticas");
+    expect(categoriaKata(0)).toEqual("Matematicas");
   });
   it("Obtener categoria categoria nro 2", () => {
-    expect(categoriaKata(2)).toEqual("Tecnologías específicas");
+    expect(categoriaKata(2)).toEqual("Tecnologias");
   });
   it("Obtener categoria categoria nro 3", () => {
     expect(categoriaKata(3)).toEqual("Algoritmo");

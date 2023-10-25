@@ -1,4 +1,4 @@
-import { agruparKatasPorDificultad } from "./Filtros.js";
+import { agruparKatasPorDificultad, agruparKatasPorCategoria  } from "./Filtros.js";
 
 describe("Agrupacion de Kata por dificultad", () => {
     it("Agrupar Kata por dificultad", () => {
@@ -22,4 +22,30 @@ describe("Agrupacion de Kata por dificultad", () => {
         expect(result).toHaveProperty("Intermedio");
         expect(result).toHaveProperty("Avanzado");
       });
+});
+describe("Agrupacion de Kata por categoria", () => {
+  it("Agrupar Kata por categoria", () => {
+    const result = agruparKatasPorCategoria();
+    expect(result).toEqual({
+      matematicas: [
+        { nombre: "KataBankOCR", index: 0 },
+      ],
+      juego: [
+        { nombre: "KataFizzBuzz", index: 1 },
+      ],
+      tecnologias: [
+        { nombre: "FooBarQix", index: 2 },
+      ],
+      algoritmo: [
+        { nombre: "KataPotter", index: 3 },
+      ]
+     
+    });
+  });
+
+  it("Verificar existencia categorias 1", () => {
+    const result = agruparKatasPorDificultad();
+    expect(result).toHaveProperty("matematicas");
+   
+  });
 });

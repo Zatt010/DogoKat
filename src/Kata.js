@@ -8,9 +8,9 @@ class Kata {
 }
 
 let Katas = [ 
-  new Kata("KataBankOCR", "Detalles de la primera kata", "Orientado a las matemáticas", "Principiante"),
-  new Kata("KataFizzBuzz", "Detalles de la segunda kata", "Modelado de juego", "Principiante"),
-  new Kata("FooBarQix", "Detalles de la tercera kata", "Tecnologías específicas", "Intermedio"),
+  new Kata("KataBankOCR", "Detalles de la primera kata", "Matematicas", "Principiante"),
+  new Kata("KataFizzBuzz", "Detalles de la segunda kata", "Juego", "Principiante"),
+  new Kata("FooBarQix", "Detalles de la tercera kata", "Tecnologias", "Intermedio"),
   new Kata("KataPotter", "Detalles de la cuarta kata", "Algoritmo", "Avanzado")
 ];
 

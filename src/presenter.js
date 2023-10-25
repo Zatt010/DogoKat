@@ -86,7 +86,7 @@ function mostrarKatasPorCategoria(categoria) {
   }
 });
 
-['Matemáticas', 'Juegos', 'Tecnología'].forEach((categoria) => {
+['Matematicas', 'Juego', 'Tecnologias','Algoritmo'].forEach((categoria) => {
   const categoriaTitle = document.getElementById(`${categoria}-title`);
   if (categoriaTitle) {
     categoriaTitle.addEventListener('click', () => {
