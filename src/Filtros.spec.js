@@ -44,7 +44,7 @@ describe("Agrupacion de Kata por categoria", () => {
   });
 
   it("Verificar existencia categorias 1", () => {
-    const result = agruparKatasPorDificultad();
+    const result = agruparKatasPorCategoria();
     expect(result).toHaveProperty("matematicas");
    
   });
