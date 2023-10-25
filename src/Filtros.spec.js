@@ -48,4 +48,9 @@ describe("Agrupacion de Kata por categoria", () => {
     expect(result).toHaveProperty("matematicas");
    
   });
+  it("Verificar existencia categorias 3", () => {
+    const result = agruparKatasPorCategoria();
+    expect(result).toHaveProperty("tecnologias");
+   
+  });
 });
