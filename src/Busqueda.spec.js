@@ -11,3 +11,4 @@ describe("Busqueda de Kata por nombre", () => {
         expect(result).toEqual([]);
     });
 });
+

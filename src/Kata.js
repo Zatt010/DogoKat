@@ -1,10 +1,11 @@
 class Kata{
-  constructor(nombre, detalle, dificultad, categoria,lenguaje){
+  constructor(nombre, detalle, dificultad, categoria,lenguaje,estado){
     this.nombre = nombre;
     this.detalle = detalle;
     this.dificultad = dificultad;
     this.categoria = categoria;
     this.lenguaje = lenguaje;
+    this.estado = estado;
   }
 }
 class login{
@@ -13,12 +14,11 @@ class login{
     this.password = password;
   }
 }
-
 let Katas = [
-  new Kata("KataBankOCR", "Detalles de la primera kata","Principiante","Matematicas","c++"),
-  new Kata("KataFizzBuzz", "Detalles de la segunda kata","Principiante","Juegos","javascript"),
-  new Kata("FooBarQix", "Detalles de la tercera kata","Intermedio","Tecnologia","phyton"),
-  new Kata("KataPotter", "Detalles de la cuarta kata","Avanzado","Algoritmos","c++")
+  new Kata("KataBankOCR", "Detalles de la primera kata","Principiante","Matematicas","c++","terminado"),
+  new Kata("KataFizzBuzz", "Detalles de la segunda kata","Principiante","Juegos","javascript","no_terminado"),
+  new Kata("FooBarQix", "Detalles de la tercera kata","Intermedio","Tecnologia","phyton","terminado"),
+  new Kata("KataPotter", "Detalles de la cuarta kata","Avanzado","Algoritmos","c++","no_terminado")
 ]
 //instancia de la clase login
 
@@ -26,11 +26,12 @@ let usuarios = [
   new login("pepe","123"),
   new login("pedro","123")
 ]
-
-
-
 function obtenerNombres() {
   return Katas.map(Kata => Kata.nombre);
+}
+//lo nuevo
+function EstadoKata(kataIndex){
+  return Katas[kataIndex].estado;
 }
 
 function detallesKata(kataIndex) {
@@ -63,4 +64,4 @@ function crearUsu(usuario,password){
     return false;
   }
 }
-export { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,lenguajekata,crearUsu };
+export { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,lenguajekata,crearUsu,EstadoKata };

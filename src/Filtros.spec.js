@@ -1,4 +1,4 @@
-import { agruparKatasPorDificultad, agruparKatasPorCategoria,agruparKatasPorLenguaje } from "./Filtros.js";
+import { agruparKatasPorDificultad, agruparKatasPorCategoria,agruparKatasPorLenguaje,busquedaEstado } from "./Filtros.js";
 
 describe("Agrupacion de Kata por dificultad", () => {
   it("Agrupar Kata por dificultad", () => {
@@ -75,6 +75,11 @@ describe("Agrupacion de Kata por categoria", () => {
   it("Verificar que existencia estos lenguaje phyton c++", () => {
     const result = agruparKatasPorLenguaje();
     expect(result).not.toHaveProperty("phyton","c++");
+    
+  });
+  it("Verificar que exita katas terminadas", () => {
+    const result = busquedaEstado();
+    expect(result).not.toHaveProperty("terminadas");
     
   });
   
