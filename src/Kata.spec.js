@@ -1,4 +1,4 @@
-import { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,obtenerNombreUsu,getcontra,crearUsu } from "./Kata.js";
+import { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,obtenerNombreUsu,getcontra,crearUsu,estadoResolucion,modificarKata } from "./Kata.js";
 
 
 describe("Obtener Lista de Kata", () => {
@@ -77,3 +77,8 @@ describe("Creacion de un usuario", () => {
   });
 });
 
+describe("Cambiar estado de No terminado a Terminado", () => {
+  it("Obtener la Kata FooBarQix", () => {
+    expect( modificarKata("FooBarQix")).toEqual(expect.arrayContaining(["FooBarQix"]));
+  });
+});

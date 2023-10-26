@@ -1,3 +1,4 @@
+import {busquedaSimple} from "./Busqueda"
 class Kata{
   constructor(nombre, detalle, dificultad, categoria,lenguaje,estado){
     this.nombre = nombre;
@@ -50,8 +51,13 @@ function lenguajekata(kataIndex){
 function estadoResolucion(kataIndex){
   return Katas[kataIndex].estado;
 }
+
+function modificarKata(nombre){
+return busquedaSimple(nombre)
+}
+
 function crearKata(nombreKata, detalleKata, dificultadKata, categoriaKata,lenguajekata) {
-  if (nombreKata.length <= 13) {
+  if (nombreKata.length <= 100) {
     Katas.push(new Kata(nombreKata, detalleKata, dificultadKata, categoriaKata,lenguajekata));
     return true
   } else {
@@ -67,4 +73,4 @@ function crearUsu(usuario,password){
     return false;
   }
 }
-export { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,lenguajekata,crearUsu,estadoResolucion };
+export { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,lenguajekata,crearUsu,estadoResolucion,modificarKata };
