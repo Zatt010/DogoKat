@@ -8,6 +8,6 @@ class Usuario {
         return `${this.email}: ${this.contrasena}`;
         }
     }
-    const Usuarios = [new Usuario("prueba@gmail.com", "123")];
+    const Usuarios = [new Usuario("prueba@gmail.com", "a")];
 
 export { Usuario, Usuarios };
