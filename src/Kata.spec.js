@@ -52,5 +52,10 @@ describe("Creacion de un usuario", () => {
     const nuevousuario = crearUsu(nombreUsuario, password);
     expect(nuevousuario).toBe(true);
   });
-  
+  it("crear un usuario incorrecto", () => {
+    const nombreUsuario = "juan";
+    const password = "12345";
+    const nuevousuario = crearUsu(nombreUsuario, password);
+    expect(nuevousuario).toBe(false);
+  });
 });
