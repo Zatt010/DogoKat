@@ -53,7 +53,12 @@ function estadoResolucion(kataIndex){
 }
 
 function modificarKata(nombre){
-return busquedaSimple(nombre)
+  const resultado= busquedaSimple(nombre).map((estado, index))
+  if(resultado.estado=="No Terminado")
+  {
+    return true
+  }
+  return false
 }
 
 function crearKata(nombreKata, detalleKata, dificultadKata, categoriaKata,lenguajekata) {
