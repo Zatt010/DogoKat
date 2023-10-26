@@ -1,17 +1,18 @@
 class Kata{
-  constructor(nombre, detalle, dificultad, categoria){
+  constructor(nombre, detalle, dificultad, categoria,lenguaje){
     this.nombre = nombre;
     this.detalle = detalle;
     this.dificultad = dificultad;
     this.categoria = categoria;
+    this.lenguaje = lenguaje;
   }
 }
 
 let Katas = [
-  new Kata("KataBankOCR", "Detalles de la primera kata","Principiante","Matematicas"),
-  new Kata("KataFizzBuzz", "Detalles de la segunda kata","Principiante","Juegos"),
-  new Kata("FooBarQix", "Detalles de la tercera kata","Intermedio","Tecnologia"),
-  new Kata("KataPotter", "Detalles de la cuarta kata","Avanzado","Algoritmos")
+  new Kata("KataBankOCR", "Detalles de la primera kata","Principiante","Matematicas","c++"),
+  new Kata("KataFizzBuzz", "Detalles de la segunda kata","Principiante","Juegos","javascript"),
+  new Kata("FooBarQix", "Detalles de la tercera kata","Intermedio","Tecnologia","phyton"),
+  new Kata("KataPotter", "Detalles de la cuarta kata","Avanzado","Algoritmos","c++")
 ]
 
 function obtenerNombres() {
@@ -28,12 +29,15 @@ function dificultadKata(kataIndex) {
 function categoriaKata(kataIndex) {
   return Katas[kataIndex].categoria;
 }
-function crearKata(nombreKata, detalleKata, dificultadKata, categoriaKata) {
+function lenguajekata(kataIndex){
+  return Katas[kataIndex].lenguaje;
+}
+function crearKata(nombreKata, detalleKata, dificultadKata, categoriaKata,lenguajekata) {
   if (nombreKata.length <= 100) {
-    Katas.push(new Kata(nombreKata, detalleKata, dificultadKata, categoriaKata));
+    Katas.push(new Kata(nombreKata, detalleKata, dificultadKata, categoriaKata,lenguajekata));
     return true
   } else {
     return false;
   }
 }
-export { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata };
+export { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,lenguajekata };
