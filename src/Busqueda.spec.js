@@ -17,5 +17,8 @@ describe("Busqueda de estado", () => {
         const result = busquedaEstado("No");
         expect(result).toEqual(expect.arrayContaining(["No Terminado"]));
     });
-
+    it("Buscar existente", () => {
+        const result = busquedaEstado("DAT");
+        expect(result).toEqual([]);
+    });
 });
