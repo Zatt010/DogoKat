@@ -9,4 +9,6 @@ class Usuario {
         }
     }
 
-export { Usuario };
+    const usuarioPredeterminado = new Usuario("prueba@gmail.com", "123");
+
+    export { Usuario, usuarioPredeterminado };
