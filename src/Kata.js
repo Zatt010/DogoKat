@@ -34,6 +34,10 @@ function obtenerNombres() {
   return Katas.map(Kata => Kata.nombre);
 }
 
+function obtenerEstado() {
+  return Katas.map(Kata => Kata.estado);
+}
+
 function detallesKata(kataIndex) {
   return Katas[kataIndex].detalle;
 }
@@ -64,4 +68,4 @@ function crearUsu(usuario,password){
     return false;
   }
 }
-export { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,lenguajekata,crearUsu };
+export { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,lenguajekata,crearUsu, obtenerEstado };

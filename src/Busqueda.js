@@ -1,4 +1,4 @@
-import { obtenerNombres } from './Kata.js';
+import { obtenerNombres, obtenerEstado } from './Kata.js';
 
 function busquedaSimple(search) {
     if (search.length > 100) {
@@ -12,7 +12,7 @@ function busquedaEstado(search) {
     if (search.length > 100) {
         return false;
     }
-    const nombres = obtenerNombres();
+    const nombres = obtenerEstado();
     return nombres.filter(nombre => nombre.toLowerCase().includes(search.toLowerCase()));
 }
 
