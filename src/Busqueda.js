@@ -8,4 +8,12 @@ function busquedaSimple(search) {
     return nombres.filter(nombre => nombre.toLowerCase().includes(search.toLowerCase()));
 }
 
+function busquedaEstado(search) {
+    if (search.length > 100) {
+        return false;
+    }
+    const nombres = obtenerNombres();
+    return nombres.filter(nombre => nombre.toLowerCase().includes(search.toLowerCase()));
+}
+
 export { busquedaSimple };

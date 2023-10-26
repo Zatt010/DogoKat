@@ -1,10 +1,11 @@
 class Kata{
-  constructor(nombre, detalle, dificultad, categoria,lenguaje){
+  constructor(nombre, detalle, dificultad, categoria,lenguaje,estado){
     this.nombre = nombre;
     this.detalle = detalle;
     this.dificultad = dificultad;
     this.categoria = categoria;
     this.lenguaje = lenguaje;
+    this.estado = estado;
   }
 }
 class login{
@@ -15,10 +16,10 @@ class login{
 }
 
 let Katas = [
-  new Kata("KataBankOCR", "Detalles de la primera kata","Principiante","Matematicas","c++"),
-  new Kata("KataFizzBuzz", "Detalles de la segunda kata","Principiante","Juegos","javascript"),
-  new Kata("FooBarQix", "Detalles de la tercera kata","Intermedio","Tecnologia","phyton"),
-  new Kata("KataPotter", "Detalles de la cuarta kata","Avanzado","Algoritmos","c++")
+  new Kata("KataBankOCR", "Detalles de la primera kata","Principiante","Matematicas","c++", "Terminado"),
+  new Kata("KataFizzBuzz", "Detalles de la segunda kata","Principiante","Juegos","javascript", "No Terminado"),
+  new Kata("FooBarQix", "Detalles de la tercera kata","Intermedio","Tecnologia","phyton", "Terminado"),
+  new Kata("KataPotter", "Detalles de la cuarta kata","Avanzado","Algoritmos","c++", "Terminado")
 ]
 //instancia de la clase login
 
