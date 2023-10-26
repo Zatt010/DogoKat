@@ -74,8 +74,8 @@ describe("Agrupacion de Kata por categoria", () => {
   });
   it("Verificar que existencia estos lenguaje phyton c++", () => {
     const result = agruparKatasPorLenguaje();
-    expect(result).not.toHaveProperty("phyton", "c++");
+    expect(result).not.toHaveProperty("phyton","c++");
     
   });
-
+  
 });

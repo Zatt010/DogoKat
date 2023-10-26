@@ -1,12 +1,13 @@
-import { obtenerNombres, detallesKata, dificultadKata } from './Kata.js';
+import { obtenerNombres, detallesKata, dificultadKata, lenguajekata } from './Kata.js';
 import { busquedaSimple } from './Busqueda.js';
-import { agruparKatasPorDificultad,agruparKatasPorCategoria } from './Filtros.js';
+import { agruparKatasPorDificultad,agruparKatasPorCategoria,agruparKatasPorLenguaje } from './Filtros.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const nombresKatasDiv = document.querySelector('.nombres-katas');
   const detalleKataDiv = document.querySelector('.detalle-Kata');
   const busquedaButton = document.getElementById('busquedaButton');
   const busquedaInput = document.getElementById('busquedaInput');
+  const lenguajeselect = document.getElementById('lenguajeSelect');
   const nombres = obtenerNombres();
   const katasPorDificultad = agruparKatasPorDificultad();
   const categoriaSelect = document.getElementById('categoriaSelect');
@@ -16,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   nombresKatasDiv.addEventListener('click', (event) => {
     if (event.target.tagName === 'A') {
-      event.preventDefault();
+      event.preventDefault(); 
       const kataIndex = event.target.getAttribute('data-kata');
       //const dificultad = event.target.getAttribute('data-dificultad');
       mostrarDetallesDeKata(kataIndex);
@@ -76,6 +77,27 @@ document.addEventListener('DOMContentLoaded', () => {
       katasPorCategoriaDiv.innerHTML = 'No se encontraron katas en esta categoría.';
     }
   });
+  function mostrarKatasPorLenguaje(lenguajeSeleccionado) {
+    const katasPorLenguajeDiv = document.getElementById('katasPorLenguajeDiv');
+    const katasPorLenguaje = agruparKatasPorLenguaje();
+  
+    if (katasPorLenguaje[lenguajeSeleccionado]) {
+      const katasDelLenguaje = katasPorLenguaje[lenguajeSeleccionado];
+      const kataList = katasDelLenguaje.map(
+        ({ nombre, index }) =>
+          `<li><a href="#" data-kata="${index}" data-lenguaje="${lenguajeSeleccionado}">${nombre}</a></li>`
+      ).join('');
+      katasPorLenguajeDiv.innerHTML = `<h2>${lenguajeSeleccionado}</h2><ul>${kataList}</ul>`;
+    } else {
+      katasPorLenguajeDiv.innerHTML = 'No se encontraron katas en este lenguaje.';
+    }
+  }
+  
+  lenguajeSelect.addEventListener('change', (event) => {
+    const lenguajeSeleccionado = event.target.value;
+    mostrarKatasPorLenguaje(lenguajeSeleccionado);
+  });
+
   busquedaButton.addEventListener('click', () => {
     const searchTerm = busquedaInput.value.trim();
     const resultados = busquedaSimple(searchTerm);
