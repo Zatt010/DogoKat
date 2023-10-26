@@ -1,4 +1,4 @@
-import { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata } from "./Kata.js";
+import { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,obtenerNombreUsu,getcontra,crearUsu } from "./Kata.js";
 
 
 describe("Obtener Lista de Kata", () => {
@@ -44,4 +44,13 @@ describe("Obtener Categoria de Kata", () => {
   it("Obtener categoria categoria nro 2", () => {
     expect(categoriaKata(1)).toEqual("Juegos");
   });
+});
+describe("Creacion de un usuario", () => {
+  it("crear un usuario con nombre y contraseña", () => {
+    const nombreUsuario = "Pepe";
+    const password = "123";
+    const nuevousuario = crearUsu(nombreUsuario, password);
+    expect(nuevousuario).toBe(true);
+  });
+  
 });
