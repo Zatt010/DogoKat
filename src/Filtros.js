@@ -1,4 +1,4 @@
-import { obtenerNombres, detallesKata, dificultadKata,categoriaKata,lenguajekata } from './Kata.js';
+import { obtenerNombres, detallesKata, dificultadKata,categoriaKata,lenguajekata,estadoResolucion } from './Kata.js';
 
 function agruparKatasPorDificultad() {
   const nombres = obtenerNombres();
@@ -34,6 +34,15 @@ function agruparKatasPorLenguaje() {
   }, {});
 }
 
+function agruparKatasPorEstado() {
+  const nombres = obtenerNombres();
+  return nombres.reduce((KatasPorEstado, nombre, index) => {
+    const lenguaje = "Terminado";
+    KatasPorEstado[lenguaje] = KatasPorEstado[lenguaje] || [];
+    KatasPorEstado[lenguaje].push({ nombre, index });
+    return KatasPorEstado;
+  }, {});
+}
 
-export { agruparKatasPorDificultad,agruparKatasPorCategoria,agruparKatasPorLenguaje };
+export { agruparKatasPorDificultad,agruparKatasPorCategoria,agruparKatasPorLenguaje,agruparKatasPorEstado };
 
