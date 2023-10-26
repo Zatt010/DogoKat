@@ -1,4 +1,3 @@
-
 <html>
   <head>
     <title>KitPatitasKat TDD</title>
@@ -10,6 +9,22 @@
       <button id="busquedaButton">Buscar</button>
       <div class="nombres-katas"></div>
       <div class="detalle-Kata"></div>
+      
+      <label for="categoriaSelect">Seleccionar Categoría:</label>
+      <select id="categoriaSelect">
+        <option value="Matematicas">Matemáticas</option>
+        <option value="Juegos">Juegos</option>
+        <option value="Tecnologia">Tecnología</option>
+        <option value="Algoritmos">Algoritmos</option>
+      </select>
+      <label for="lenguajeSelect">Seleccionar lenguaje:</label>
+      <select id="lenguajeSelect">
+        <option value="c++">c++</option>
+        <option value="phyton">phyton</option>
+        <option value="javascript">javascript</option>
+      </select>
+      <div id="katasPorCategoriaDiv"></div>
+      <div id="katasPorLenguajeDiv"></div>
       <button id="myButton">
         <a href="./creacionKata.html">Ir a Creación de Kata</a>
       </button>

@@ -1,4 +1,4 @@
-import { obtenerNombres, detallesKata, dificultadKata } from './Kata.js';
+import { obtenerNombres, detallesKata, dificultadKata,categoriaKata,lenguajekata } from './Kata.js';
 
 function agruparKatasPorDificultad() {
   const nombres = obtenerNombres();
@@ -15,4 +15,25 @@ function agruparKatasPorDificultad() {
   return katasPorDificultad;
 }
 
-export { agruparKatasPorDificultad };
+function agruparKatasPorCategoria() {
+  const nombres = obtenerNombres();
+  return nombres.reduce((KatasPorCategoria, nombre, index) => {
+    const categoria = categoriaKata(index);
+    KatasPorCategoria[categoria] = KatasPorCategoria[categoria] || [];
+    KatasPorCategoria[categoria].push({ nombre, index });
+    return KatasPorCategoria;
+  }, {});
+}
+function agruparKatasPorLenguaje() {
+  const nombres = obtenerNombres();
+  return nombres.reduce((KatasPorLenguaje, nombre, index) => {
+    const lenguaje = lenguajekata(index); // Obtener el lenguaje de la kata actual
+    KatasPorLenguaje[lenguaje] = KatasPorLenguaje[lenguaje] || [];
+    KatasPorLenguaje[lenguaje].push({ nombre, index });
+    return KatasPorLenguaje;
+  }, {});
+}
+
+
+export { agruparKatasPorDificultad,agruparKatasPorCategoria,agruparKatasPorLenguaje };
+

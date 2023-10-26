@@ -1,21 +1,23 @@
-import { obtenerNombres, detallesKata, dificultadKata } from './Kata.js';
+import { obtenerNombres, detallesKata, dificultadKata, lenguajekata } from './Kata.js';
 import { busquedaSimple } from './Busqueda.js';
-import { agruparKatasPorDificultad } from './Filtros.js';
+import { agruparKatasPorDificultad,agruparKatasPorCategoria,agruparKatasPorLenguaje } from './Filtros.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const nombresKatasDiv = document.querySelector('.nombres-katas');
   const detalleKataDiv = document.querySelector('.detalle-Kata');
   const busquedaButton = document.getElementById('busquedaButton');
   const busquedaInput = document.getElementById('busquedaInput');
+  const lenguajeselect = document.getElementById('lenguajeSelect');
   const nombres = obtenerNombres();
   const katasPorDificultad = agruparKatasPorDificultad();
-
+  const categoriaSelect = document.getElementById('categoriaSelect');
+  
   // Mostrar nombres en el HTML y manejo de los clics
   nombresKatasDiv.innerHTML = `<ul>${nombres.map((nombre, index) => `<li><a href="#" data-kata="${index}">${nombre}</a></li>`).join('')}</ul>`;
 
   nombresKatasDiv.addEventListener('click', (event) => {
     if (event.target.tagName === 'A') {
-      event.preventDefault();
+      event.preventDefault(); 
       const kataIndex = event.target.getAttribute('data-kata');
       //const dificultad = event.target.getAttribute('data-dificultad');
       mostrarDetallesDeKata(kataIndex);
@@ -59,6 +61,42 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
+  categoriaSelect.addEventListener('change', (event) => {
+    const categoriaSeleccionada = event.target.value;
+    const katasPorCategoriaDiv = document.getElementById('katasPorCategoriaDiv');
+    const katasPorCategoria = agruparKatasPorCategoria();
+
+    if (katasPorCategoria[categoriaSeleccionada]) {
+      const katasDeCategoria = katasPorCategoria[categoriaSeleccionada];
+      const kataList = katasDeCategoria.map(
+        ({ nombre, index }) =>
+          `<li><a href="#" data-kata="${index}" data-dificultad="${categoriaSeleccionada}">${nombre}</a></li>`
+      ).join('');
+      nombresKatasDiv.innerHTML = `<h2>${categoriaSeleccionada}</h2><ul>${kataList}</ul>`;
+    } else {
+      katasPorCategoriaDiv.innerHTML = 'No se encontraron katas en esta categoría.';
+    }
+  });
+  function mostrarKatasPorLenguaje(lenguajeSeleccionado) {
+    const katasPorLenguajeDiv = document.getElementById('katasPorLenguajeDiv');
+    const katasPorLenguaje = agruparKatasPorLenguaje();
+  
+    if (katasPorLenguaje[lenguajeSeleccionado]) {
+      const katasDelLenguaje = katasPorLenguaje[lenguajeSeleccionado];
+      const kataList = katasDelLenguaje.map(
+        ({ nombre, index }) =>
+          `<li><a href="#" data-kata="${index}" data-lenguaje="${lenguajeSeleccionado}">${nombre}</a></li>`
+      ).join('');
+      katasPorLenguajeDiv.innerHTML = `<h2>${lenguajeSeleccionado}</h2><ul>${kataList}</ul>`;
+    } else {
+      katasPorLenguajeDiv.innerHTML = 'No se encontraron katas en este lenguaje.';
+    }
+  }
+  
+  lenguajeSelect.addEventListener('change', (event) => {
+    const lenguajeSeleccionado = event.target.value;
+    mostrarKatasPorLenguaje(lenguajeSeleccionado);
+  });
 
   busquedaButton.addEventListener('click', () => {
     const searchTerm = busquedaInput.value.trim();
@@ -71,7 +109,4 @@ document.addEventListener('DOMContentLoaded', () => {
       nombresKatasDiv.innerHTML = 'Kata no encontrada';
     }
   });
-
 });
-
-
