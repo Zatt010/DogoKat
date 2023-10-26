@@ -1,11 +1,12 @@
 
 class Usuario {
-    constructor(email) {
+        constructor(email, contrasena) {
         this.email = email;
+        this.contrasena = contrasena;
+        }
+        get detalle() {
+        return `${this.email}: ${this.contrasena}`;
+        }
     }
-    get detalle() {
-        return `${this.email}`;
-    }
-}
 
 export { Usuario };
