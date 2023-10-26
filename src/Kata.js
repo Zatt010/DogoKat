@@ -47,7 +47,7 @@ function lenguajekata(kataIndex){
   return Katas[kataIndex].lenguaje;
 }
 function crearKata(nombreKata, detalleKata, dificultadKata, categoriaKata,lenguajekata) {
-  if (nombreKata.length <= 100) {
+  if (nombreKata.length <= 13) {
     Katas.push(new Kata(nombreKata, detalleKata, dificultadKata, categoriaKata,lenguajekata));
     return true
   } else {
