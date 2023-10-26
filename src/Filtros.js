@@ -37,7 +37,7 @@ function agruparKatasPorLenguaje() {
 function agruparKatasPorEstado() {
   const nombres = obtenerNombres();
   return nombres.reduce((KatasPorEstado, nombre, index) => {
-    const lenguaje = "Terminado";
+    const lenguaje = "No Terminado";
     KatasPorEstado[lenguaje] = KatasPorEstado[lenguaje] || [];
     KatasPorEstado[lenguaje].push({ nombre, index });
     return KatasPorEstado;

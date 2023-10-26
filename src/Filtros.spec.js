@@ -81,12 +81,12 @@ describe("Agrupacion de Kata por categoria", () => {
 });
 
 describe("Agrupacion de Kata por estado", () => {
-  it("Agrupar Kata por estado", () => {
+  it("Agrupar Kata por estado No Terminado", () => {
     const result = agruparKatasPorEstado();
     expect(result).toEqual({
-      Terminado: [
-          { nombre: "KataBankOCR", index: 0 },
-          { nombre: "KataFizzBuzz", index: 1 }
+      NoTerminado: [
+          { nombre: "FooBarQix", index: 2 },
+          { nombre: "KataPotter", index: 3 }
         ],
       });
 });
