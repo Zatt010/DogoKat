@@ -79,9 +79,9 @@ describe("Creacion de un usuario", () => {
 
 describe("Cambiar estado de No terminado a Terminado", () => {
   it("Obtener la Kata FooBarQix", () => {
-    expect( modificarKata("FooBarQix")).toEqual(true);
+    expect( modificarKata("FooBarQix","Terminado")).toEqual(true);
   });
   it("Obtener la Kata KataBankOCR", () => {
-    expect( modificarKata("KataBankOCR")).toEqual(false);
+    expect( modificarKata("KataBankOCR","Terminado")).toEqual(false);
   });
 });

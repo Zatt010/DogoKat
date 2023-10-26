@@ -52,10 +52,11 @@ function estadoResolucion(kataIndex){
   return Katas[kataIndex].estado;
 }
 
-function modificarKata(nombre){
+function modificarKata(nombre,newestado){
   const resultado= busquedaSimple(nombre).map((estado, index))
   if(resultado.estado=="No Terminado")
   {
+    Katas[index].estado=newestado;
     return true
   }
   return false
