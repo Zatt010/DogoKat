@@ -1,5 +1,5 @@
 {
-  "name": "parcel-jest-base",
+  "name": "parcelbase",
   "version": "1.0.0",
   "description": "npm install",
   "default": "index.html",
@@ -32,5 +32,6 @@
   "homepage": "https://github.com/Zatt010/DogoKat#readme",
   "dependencies": {
     "parcel-bundler": "^1.12.5"
-  }
+  },
+  "main": "cypress.config.js"
 }
