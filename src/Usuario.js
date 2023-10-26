@@ -1,6 +1,6 @@
 
 class Usuario {
-        constructor(email, contrasena) {
+    constructor(email, contrasena) {
         this.email = email;
         this.contrasena = contrasena;
         }
@@ -8,7 +8,6 @@ class Usuario {
         return `${this.email}: ${this.contrasena}`;
         }
     }
+    const Usuarios = [new Usuario("prueba@gmail.com", "123")];
 
-    const usuarioPredeterminado = new Usuario("prueba@gmail.com", "123");
-
-    export { Usuario, usuarioPredeterminado };
+export { Usuario, Usuarios };
