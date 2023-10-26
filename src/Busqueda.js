@@ -12,8 +12,8 @@ function busquedaEstado(search) {
     if (search.length > 100) {
         return false;
     }
-    const nombres = obtenerEstado();
-    return nombres.filter(nombre => nombre.toLowerCase().includes(search.toLowerCase()));
+    const es = obtenerEstado();
+    return es.filter(nombre => nombre.toLowerCase().includes(search.toLowerCase()));
 }
 
-export { busquedaSimple };
+export { busquedaSimple, busquedaEstado };

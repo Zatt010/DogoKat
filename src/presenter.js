@@ -1,5 +1,5 @@
 import { obtenerNombres, detallesKata, dificultadKata, lenguajekata } from './Kata.js';
-import { busquedaSimple } from './Busqueda.js';
+import { busquedaSimple, busquedaEstado } from './Busqueda.js';
 import { agruparKatasPorDificultad,agruparKatasPorCategoria,agruparKatasPorLenguaje } from './Filtros.js';
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -1,4 +1,4 @@
-import { busquedaSimple } from "./Busqueda.js";
+import { busquedaSimple, busquedaEstado } from "./Busqueda.js";
 
 describe("Busqueda de Kata por nombre", () => {
     it("Buscar Kata por nombre", () => {
@@ -10,4 +10,12 @@ describe("Busqueda de Kata por nombre", () => {
         const result = busquedaSimple("ines");
         expect(result).toEqual([]);
     });
+});
+
+describe("Busqueda de estado", () => {
+    it("Buscar existente", () => {
+        const result = busquedaEstado("No");
+        expect(result).toEqual(expect.arrayContaining(["No Terminado"]));
+    });
+
 });
