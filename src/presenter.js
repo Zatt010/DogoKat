@@ -62,17 +62,20 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   categoriaSelect.addEventListener('change', (event) => {
     const categoriaSeleccionada = event.target.value;
-    
     const katasPorCategoriaDiv = document.getElementById('katasPorCategoriaDiv');
-    const katasPorCategoria = agruparKatasPorCategoria(); // Llama a la función de filtros.js
-    const katasDeCategoria = katasPorCategoria[categoriaSeleccionada];
-    if (katasDeCategoria) {
-      katasPorCategoriaDiv.innerHTML = `<ul>${katasDeCategoria.map((kata) => `<li>${kata.nombre}</li>`).join('')}</ul>`;
+    const katasPorCategoria = agruparKatasPorCategoria();
+
+    if (katasPorCategoria[categoriaSeleccionada]) {
+      const katasDeCategoria = katasPorCategoria[categoriaSeleccionada];
+      const kataList = katasDeCategoria.map(
+        ({ nombre, index }) =>
+          `<li><a href="#" data-kata="${index}" data-dificultad="${categoriaSeleccionada}">${nombre}</a></li>`
+      ).join('');
+      nombresKatasDiv.innerHTML = `<h2>${categoriaSeleccionada}</h2><ul>${kataList}</ul>`;
     } else {
       katasPorCategoriaDiv.innerHTML = 'No se encontraron katas en esta categoría.';
     }
   });
-  
   busquedaButton.addEventListener('click', () => {
     const searchTerm = busquedaInput.value.trim();
     const resultados = busquedaSimple(searchTerm);
@@ -84,7 +87,4 @@ document.addEventListener('DOMContentLoaded', () => {
       nombresKatasDiv.innerHTML = 'Kata no encontrada';
     }
   });
-
 });
-
-
