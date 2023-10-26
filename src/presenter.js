@@ -1,6 +1,6 @@
 import { obtenerNombres, detallesKata, dificultadKata } from './Kata.js';
 import { busquedaSimple } from './Busqueda.js';
-import { agruparKatasPorDificultad } from './Filtros.js';
+import { agruparKatasPorDificultad,agruparKatasPorCategoria } from './Filtros.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const nombresKatasDiv = document.querySelector('.nombres-katas');
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const busquedaInput = document.getElementById('busquedaInput');
   const nombres = obtenerNombres();
   const katasPorDificultad = agruparKatasPorDificultad();
-  const categoriasDiv = document.querySelector('.categorias');
+  const categoriaSelect = document.getElementById('categoriaSelect');
   
   // Mostrar nombres en el HTML y manejo de los clics
   nombresKatasDiv.innerHTML = `<ul>${nombres.map((nombre, index) => `<li><a href="#" data-kata="${index}">${nombre}</a></li>`).join('')}</ul>`;
@@ -60,28 +60,19 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
-function mostrarKatasPorCategoria(categoria) {
-  const katas = nombres.filter((nombre, index) => categoriaKata(index) === categoria);
-
-  if (katas.length > 0) {
-    const kataList = katas.map(
-      ({ nombre, index }) =>
-        `<li><a href="#" data-kata="${index}">${nombre}</a></li>`
-    ).join('');
-    nombresKatasDiv.innerHTML = `<h2>${categoria}</h2><ul>${kataList}</ul>`;
-  } else {
-    nombresKatasDiv.innerHTML = 'No se encontraron Katas en esta categoría';
-  }
-}
-
-['Matematicas', 'Juegos', 'Tecnologia', 'Algoritmos'].forEach((categoria) => {
-  const categoriaTitle = document.getElementById(`${categoria}-title`);
-  if (categoriaTitle) {
-    categoriaTitle.addEventListener('click', () => {
-      mostrarKatasPorCategoria(categoria);
-    });
-  }
-});
+  categoriaSelect.addEventListener('change', (event) => {
+    const categoriaSeleccionada = event.target.value;
+    
+    const katasPorCategoriaDiv = document.getElementById('katasPorCategoriaDiv');
+    const katasPorCategoria = agruparKatasPorCategoria(); // Llama a la función de filtros.js
+    const katasDeCategoria = katasPorCategoria[categoriaSeleccionada];
+    if (katasDeCategoria) {
+      katasPorCategoriaDiv.innerHTML = `<ul>${katasDeCategoria.map((kata) => `<li>${kata.nombre}</li>`).join('')}</ul>`;
+    } else {
+      katasPorCategoriaDiv.innerHTML = 'No se encontraron katas en esta categoría.';
+    }
+  });
+  
   busquedaButton.addEventListener('click', () => {
     const searchTerm = busquedaInput.value.trim();
     const resultados = busquedaSimple(searchTerm);

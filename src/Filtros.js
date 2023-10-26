@@ -1,4 +1,4 @@
-import { obtenerNombres, detallesKata, dificultadKata } from './Kata.js';
+import { obtenerNombres, detallesKata, dificultadKata,categoriaKata } from './Kata.js';
 
 function agruparKatasPorDificultad() {
   const nombres = obtenerNombres();
@@ -15,4 +15,17 @@ function agruparKatasPorDificultad() {
   return katasPorDificultad;
 }
 
-export { agruparKatasPorDificultad };
+function agruparKatasPorCategoria() {
+  const nombres = obtenerNombres();
+  return nombres.reduce((KatasPorCategoria, nombre, index) => {
+    const categoria = categoriaKata(index);
+    KatasPorCategoria[categoria] = KatasPorCategoria[categoria] || [];
+    KatasPorCategoria[categoria].push({ nombre, index });
+    return KatasPorCategoria;
+  }, {});
+}
+
+
+
+export { agruparKatasPorDificultad,agruparKatasPorCategoria };
+
