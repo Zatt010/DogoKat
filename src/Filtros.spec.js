@@ -1,4 +1,4 @@
-import { agruparKatasPorDificultad, agruparKatasPorCategoria } from "./Filtros.js";
+import { agruparKatasPorDificultad, agruparKatasPorCategoria,agruparKatasPorLenguaje } from "./Filtros.js";
 
 describe("Agrupacion de Kata por dificultad", () => {
   it("Agrupar Kata por dificultad", () => {
@@ -50,6 +50,16 @@ describe("Agrupacion de Kata por categoria", () => {
   it("Verificar existencia de las 2da categoria", () => {
     const result = agruparKatasPorCategoria();
     expect(result).toHaveProperty("Juegos");
+    
+  });
+  it("Verificar existencia el lenguaje c++", () => {
+    const result = agruparKatasPorLenguaje();
+    expect(result).toHaveProperty("c++");
+    
+  });
+  it("Verificar existencia el lenguaje javascript", () => {
+    const result = agruparKatasPorLenguaje();
+    expect(result).toHaveProperty("javascript");
     
   });
 });
