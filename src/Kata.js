@@ -17,9 +17,9 @@ class login{
 
 let Katas = [
   new Kata("KataBankOCR", "Detalles de la primera kata","Principiante","Matematicas","c++","Terminado"),
-  new Kata("KataFizzBuzz", "Detalles de la segunda kata","Principiante","Juegos","javascript"),
-  new Kata("FooBarQix", "Detalles de la tercera kata","Intermedio","Tecnologia","phyton"),
-  new Kata("KataPotter", "Detalles de la cuarta kata","Avanzado","Algoritmos","c++")
+  new Kata("KataFizzBuzz", "Detalles de la segunda kata","Principiante","Juegos","javascript","Terminado"),
+  new Kata("FooBarQix", "Detalles de la tercera kata","Intermedio","Tecnologia","phyton","No Terminado"),
+  new Kata("KataPotter", "Detalles de la cuarta kata","Avanzado","Algoritmos","c++","No Terminado")
 ]
 //instancia de la clase login
 

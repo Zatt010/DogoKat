@@ -57,6 +57,9 @@ describe("Obtener estado de una Kata", () => {
   it("Obtener estado de la primera Kata", () => {
     expect(estadoResolucion(0)).toEqual("Terminado");
   });
+  it("Obtener estado de la tercera Kata", () => {
+    expect(estadoResolucion(2)).toEqual("No Terminado");
+  });
 });
 
 describe("Creacion de un usuario", () => {
