@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const busquedaButton = document.getElementById('busquedaButton');
   const busquedaInput = document.getElementById('busquedaInput');
   const lenguajeselect = document.getElementById('lenguajeSelect');
+  const estadoSelect = document.getElementById("estadoSelect");
   const nombres = obtenerNombres();
   const katasPorDificultad = agruparKatasPorDificultad();
   const categoriaSelect = document.getElementById('categoriaSelect');
