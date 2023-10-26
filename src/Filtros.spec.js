@@ -67,4 +67,10 @@ describe("Agrupacion de Kata por categoria", () => {
     expect(result).toHaveProperty("phyton");
     
   });
+  it("Verificar que no existencia el lenguaje java", () => {
+    const result = agruparKatasPorLenguaje();
+    expect(result).not.toHaveProperty("java");
+    
+  });
+
 });
