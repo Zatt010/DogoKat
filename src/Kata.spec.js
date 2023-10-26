@@ -1,4 +1,4 @@
-import { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,obtenerNombreUsu,getcontra,crearUsu } from "./Kata.js";
+import { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,obtenerNombreUsu,getcontra,crearUsu,estadoResolucion,modificarKata } from "./Kata.js";
 
 
 describe("Obtener Lista de Kata", () => {
@@ -52,6 +52,16 @@ describe("Obtener Categoria de Kata", () => {
     expect(categoriaKata(1)).toEqual("Juegos");
   });
 });
+
+describe("Obtener estado de una Kata", () => {
+  it("Obtener estado de la primera Kata", () => {
+    expect(estadoResolucion(0)).toEqual("Terminado");
+  });
+  it("Obtener estado de la tercera Kata", () => {
+    expect(estadoResolucion(2)).toEqual("No Terminado");
+  });
+});
+
 describe("Creacion de un usuario", () => {
   it("crear un usuario con nombre y contraseña", () => {
     const nombreUsuario = "Pepe";
@@ -64,5 +74,14 @@ describe("Creacion de un usuario", () => {
     const password = "12345";
     const nuevousuario = crearUsu(nombreUsuario, password);
     expect(nuevousuario).toBe(false);
+  });
+});
+
+describe("Cambiar estado de No terminado a Terminado", () => {
+  it("Obtener la Kata FooBarQix", () => {
+    expect( modificarKata("FooBarQix","Terminado")).toEqual(true);
+  });
+  it("Obtener la Kata KataBankOCR", () => {
+    expect( modificarKata("KataBankOCR","Terminado")).toEqual(false);
   });
 });

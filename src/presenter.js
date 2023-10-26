@@ -1,6 +1,6 @@
 import { obtenerNombres, detallesKata, dificultadKata, lenguajekata } from './Kata.js';
 import { busquedaSimple } from './Busqueda.js';
-import { agruparKatasPorDificultad,agruparKatasPorCategoria,agruparKatasPorLenguaje } from './Filtros.js';
+import { agruparKatasPorDificultad,agruparKatasPorCategoria,agruparKatasPorLenguaje,agruparKatasPorEstado } from './Filtros.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const nombresKatasDiv = document.querySelector('.nombres-katas');
@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const busquedaButton = document.getElementById('busquedaButton');
   const busquedaInput = document.getElementById('busquedaInput');
   const lenguajeselect = document.getElementById('lenguajeSelect');
+  const estadoselect = document.getElementById('estadoselect');
   const nombres = obtenerNombres();
   const katasPorDificultad = agruparKatasPorDificultad();
   const categoriaSelect = document.getElementById('categoriaSelect');
@@ -96,6 +97,27 @@ document.addEventListener('DOMContentLoaded', () => {
   lenguajeSelect.addEventListener('change', (event) => {
     const lenguajeSeleccionado = event.target.value;
     mostrarKatasPorLenguaje(lenguajeSeleccionado);
+  });
+
+  function mostrarKatasPorEstado(estado) {
+    const katasPorEstadoDiv = document.getElementById('katasPorEstadoDiv');
+    const katasPorEstado = agruparKatasPorEstado();
+  
+    if (katasPorEstado[estado]) {
+      const katasDelEstado = katasPorEstado[estado];
+      const kataList = katasDelEstado.map(
+        ({ nombre, index }) =>
+          `<li><a href="#" data-kata="${index}" data-lenguaje="${estado}">${nombre}</a></li>`
+      ).join('');
+      katasPorEstadoDiv.innerHTML = `<h2>${estado}</h2><ul>${kataList}</ul>`;
+    } else {
+      katasPorEstadoDiv.innerHTML = 'No se encontraron katas en este lenguaje.';
+    }
+  }
+
+  estadoSelect.addEventListener('change', (event) => {
+    const estado = event.target.value;
+    mostrarKatasPorEstado(estado);
   });
 
   busquedaButton.addEventListener('click', () => {

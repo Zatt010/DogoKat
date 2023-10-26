@@ -1,10 +1,12 @@
+import {busquedaSimple} from "./Busqueda"
 class Kata{
-  constructor(nombre, detalle, dificultad, categoria,lenguaje){
+  constructor(nombre, detalle, dificultad, categoria,lenguaje,estado){
     this.nombre = nombre;
     this.detalle = detalle;
     this.dificultad = dificultad;
     this.categoria = categoria;
     this.lenguaje = lenguaje;
+    this.estado = estado;
   }
 }
 class login{
@@ -15,10 +17,10 @@ class login{
 }
 
 let Katas = [
-  new Kata("KataBankOCR", "Detalles de la primera kata","Principiante","Matematicas","c++"),
-  new Kata("KataFizzBuzz", "Detalles de la segunda kata","Principiante","Juegos","javascript"),
-  new Kata("FooBarQix", "Detalles de la tercera kata","Intermedio","Tecnologia","phyton"),
-  new Kata("KataPotter", "Detalles de la cuarta kata","Avanzado","Algoritmos","c++")
+  new Kata("KataBankOCR", "Detalles de la primera kata","Principiante","Matematicas","c++","Terminado"),
+  new Kata("KataFizzBuzz", "Detalles de la segunda kata","Principiante","Juegos","javascript","Terminado"),
+  new Kata("FooBarQix", "Detalles de la tercera kata","Intermedio","Tecnologia","phyton","No Terminado"),
+  new Kata("KataPotter", "Detalles de la cuarta kata","Avanzado","Algoritmos","c++","No Terminado")
 ]
 //instancia de la clase login
 
@@ -46,8 +48,22 @@ function categoriaKata(kataIndex) {
 function lenguajekata(kataIndex){
   return Katas[kataIndex].lenguaje;
 }
+function estadoResolucion(kataIndex){
+  return Katas[kataIndex].estado;
+}
+
+function modificarKata(nombre,newestado){
+  const resultado= busquedaSimple(nombre).map((estado, index))
+  if(resultado.estado=="No Terminado")
+  {
+    Katas[index].estado=newestado;
+    return true
+  }
+  return false
+}
+
 function crearKata(nombreKata, detalleKata, dificultadKata, categoriaKata,lenguajekata) {
-  if (nombreKata.length <= 13) {
+  if (nombreKata.length <= 100) {
     Katas.push(new Kata(nombreKata, detalleKata, dificultadKata, categoriaKata,lenguajekata));
     return true
   } else {
@@ -63,4 +79,4 @@ function crearUsu(usuario,password){
     return false;
   }
 }
-export { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,lenguajekata,crearUsu };
+export { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,lenguajekata,crearUsu,estadoResolucion,modificarKata };

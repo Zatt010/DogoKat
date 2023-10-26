@@ -1,4 +1,4 @@
-import { agruparKatasPorDificultad, agruparKatasPorCategoria,agruparKatasPorLenguaje } from "./Filtros.js";
+import { agruparKatasPorDificultad, agruparKatasPorCategoria,agruparKatasPorLenguaje,agruparKatasPorEstado } from "./Filtros.js";
 
 describe("Agrupacion de Kata por dificultad", () => {
   it("Agrupar Kata por dificultad", () => {
@@ -78,4 +78,20 @@ describe("Agrupacion de Kata por categoria", () => {
     
   });
   
+});
+
+describe("Agrupacion de Kata por estado", () => {
+  it("Agrupar Kata por estados", () => {
+    const result = agruparKatasPorEstado();
+    expect(result).toEqual({
+      Terminado: [
+          { nombre: "KataBankOCR", index: 0 },
+          { nombre: "KataFizzBuzz", index: 1 }
+        ],
+        NoTerminado: [
+          { nombre: "FooBarQix", index: 2 },
+          { nombre: "KataPotter", index: 3 }
+        ],
+      });
+});
 });
