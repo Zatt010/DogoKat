@@ -82,5 +82,10 @@ describe("Agrupacion de Kata por categoria", () => {
     expect(result).not.toHaveProperty("terminadas");
     
   });
+  it("Verificar que exita katas no terminadas", () => {
+    const result = busquedaEstado();
+    expect(result).not.toHaveProperty("no_terminadas");
+    
+  });
   
 });
