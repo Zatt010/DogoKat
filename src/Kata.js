@@ -1,10 +1,11 @@
 class Kata{
-  constructor(nombre, detalle, dificultad, categoria,lenguaje){
+  constructor(nombre, detalle, dificultad, categoria,lenguaje,estado){
     this.nombre = nombre;
     this.detalle = detalle;
     this.dificultad = dificultad;
     this.categoria = categoria;
     this.lenguaje = lenguaje;
+    this.estado = estado;
   }
 }
 class login{
@@ -15,7 +16,7 @@ class login{
 }
 
 let Katas = [
-  new Kata("KataBankOCR", "Detalles de la primera kata","Principiante","Matematicas","c++"),
+  new Kata("KataBankOCR", "Detalles de la primera kata","Principiante","Matematicas","c++","Terminado"),
   new Kata("KataFizzBuzz", "Detalles de la segunda kata","Principiante","Juegos","javascript"),
   new Kata("FooBarQix", "Detalles de la tercera kata","Intermedio","Tecnologia","phyton"),
   new Kata("KataPotter", "Detalles de la cuarta kata","Avanzado","Algoritmos","c++")
@@ -46,6 +47,9 @@ function categoriaKata(kataIndex) {
 function lenguajekata(kataIndex){
   return Katas[kataIndex].lenguaje;
 }
+function estadoResolucion(kataIndex){
+  return Katas[kataIndex].estado;
+}
 function crearKata(nombreKata, detalleKata, dificultadKata, categoriaKata,lenguajekata) {
   if (nombreKata.length <= 13) {
     Katas.push(new Kata(nombreKata, detalleKata, dificultadKata, categoriaKata,lenguajekata));
@@ -63,4 +67,4 @@ function crearUsu(usuario,password){
     return false;
   }
 }
-export { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,lenguajekata,crearUsu };
+export { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,lenguajekata,crearUsu,estadoResolucion };

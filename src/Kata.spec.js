@@ -52,6 +52,13 @@ describe("Obtener Categoria de Kata", () => {
     expect(categoriaKata(1)).toEqual("Juegos");
   });
 });
+
+describe("Obtener estado de una Kata", () => {
+  it("Obtener estado de la primera Kata", () => {
+    expect(estadoResolucion(0)).toEqual("Terminado");
+  });
+});
+
 describe("Creacion de un usuario", () => {
   it("crear un usuario con nombre y contraseña", () => {
     const nombreUsuario = "Pepe";
@@ -66,3 +73,4 @@ describe("Creacion de un usuario", () => {
     expect(nuevousuario).toBe(false);
   });
 });
+
