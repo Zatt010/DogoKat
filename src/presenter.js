@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const nombresKatasDiv = document.querySelector('.nombres-katas');
   const detalleKataDiv = document.querySelector('.detalle-Kata');
   const busquedaButton = document.getElementById('busquedaButton');
+  const busquedaButton2 = document.getElementById('busquedaButton2');
   const busquedaInput = document.getElementById('busquedaInput');
   const lenguajeselect = document.getElementById('lenguajeSelect');
   const nombres = obtenerNombres();
@@ -101,6 +102,17 @@ document.addEventListener('DOMContentLoaded', () => {
   busquedaButton.addEventListener('click', () => {
     const searchTerm = busquedaInput.value.trim();
     const resultados = busquedaSimple(searchTerm);
+    if (resultados && resultados.length > 0) {
+      // Si se encontraron resultados, mostrar los nombres en el mismo div
+      nombresKatasDiv.innerHTML = `<ul>${resultados.map((nombre, index) => `<li><a href="#" data-kata="${index}">${nombre}</a></li>`).join('')}</ul>`;
+    } else {
+      // Si no se encontraron resultados, mostrar "Kata no encontrada" en el mismo div
+      nombresKatasDiv.innerHTML = 'Kata no encontrada';
+    }
+  });
+  busquedaButton2.addEventListener('click', () => {
+    const searchTerm = busquedaInput.value.trim();
+    const resultados = busquedaEstado(searchTerm);
     if (resultados && resultados.length > 0) {
       // Si se encontraron resultados, mostrar los nombres en el mismo div
       nombresKatasDiv.innerHTML = `<ul>${resultados.map((nombre, index) => `<li><a href="#" data-kata="${index}">${nombre}</a></li>`).join('')}</ul>`;
