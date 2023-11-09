@@ -30,74 +30,40 @@ document.addEventListener('DOMContentLoaded', () => {
     detalleKataDiv.innerHTML = detalles;
   }
 
-  function mostrarKatasPorDificultad(dificultad) {
-    const katas = katasPorDificultad[dificultad];
-    if (katas) {
-      const kataList = katas.map(
-        ({ nombre, index }) =>
-          `<li><a href="#" data-kata="${index}" data-dificultad="${dificultad}">${nombre}</a></li>`
-      ).join('');
-      nombresKatasDiv.innerHTML = `<h2>${dificultad}</h2><ul>${kataList}</ul>`;
-    }
-  }
+  dificultadSelect.addEventListener('change', (event) => {
+    const dificultadSeleccionada = event.target.value;
+    const katasPorDificultadDiv = document.getElementById('katasPorDificultadDiv');
+    const katasPorDificultad = agruparKatasPorDificultad();
 
-   // Mostrar nombres por dificultad en el HTML y manejo de clics
-  ['Avanzado', 'Intermedio', 'Principiante'].forEach((dificultad) =>{
-   if (katasPorDificultad[dificultad]) {
-    const katas = katasPorDificultad[dificultad];
-    const kataList = katas.map(
-      ({ nombre, index }) =>
-        `<li><a href="#" data-kata="${index}" data-dificultad="${dificultad}">${nombre}</a></li>`
-    ).join('');
-    nombresKatasDiv.innerHTML += `<h2 id="${dificultad}-title">${dificultad}</h2><ul>${kataList}</ul>`;
-   }
+    mostrarKatasPorCriterio(dificultadSeleccionada, katasPorDificultad, nombresKatasDiv, katasPorDificultadDiv);
   });
 
-  ['Avanzado', 'Intermedio', 'Principiante'].forEach((dificultad) => {
-    const dificultadTitle = document.getElementById(`${dificultad}-title`);
-    if (dificultadTitle) {
-      dificultadTitle.addEventListener('click', () => {
-        mostrarKatasPorDificultad(dificultad);
-      });
-    }
-  });
   categoriaSelect.addEventListener('change', (event) => {
     const categoriaSeleccionada = event.target.value;
     const katasPorCategoriaDiv = document.getElementById('katasPorCategoriaDiv');
     const katasPorCategoria = agruparKatasPorCategoria();
 
-    if (katasPorCategoria[categoriaSeleccionada]) {
-      const katasDeCategoria = katasPorCategoria[categoriaSeleccionada];
-      const kataList = katasDeCategoria.map(
-        ({ nombre, index }) =>
-          `<li><a href="#" data-kata="${index}" data-dificultad="${categoriaSeleccionada}">${nombre}</a></li>`
-      ).join('');
-      nombresKatasDiv.innerHTML = `<h2>${categoriaSeleccionada}</h2><ul>${kataList}</ul>`;
-    } else {
-      katasPorCategoriaDiv.innerHTML = 'No se encontraron katas en esta categoría.';
-    }
-  });
-  function mostrarKatasPorLenguaje(lenguajeSeleccionado) {
-    const katasPorLenguajeDiv = document.getElementById('katasPorLenguajeDiv');
-    const katasPorLenguaje = agruparKatasPorLenguaje();
-  
-    if (katasPorLenguaje[lenguajeSeleccionado]) {
-      const katasDelLenguaje = katasPorLenguaje[lenguajeSeleccionado];
-      const kataList = katasDelLenguaje.map(
-        ({ nombre, index }) =>
-          `<li><a href="#" data-kata="${index}" data-lenguaje="${lenguajeSeleccionado}">${nombre}</a></li>`
-      ).join('');
-      katasPorLenguajeDiv.innerHTML = `<h2>${lenguajeSeleccionado}</h2><ul>${kataList}</ul>`;
-    } else {
-      katasPorLenguajeDiv.innerHTML = 'No se encontraron katas en este lenguaje.';
-    }
-  }
-  
-  lenguajeSelect.addEventListener('change', (event) => {
-    const lenguajeSeleccionado = event.target.value;
-    mostrarKatasPorLenguaje(lenguajeSeleccionado);
+    mostrarKatasPorCriterio(categoriaSeleccionada, katasPorCategoria, nombresKatasDiv, katasPorCategoriaDiv);
   });
 
+  lenguajeselect.addEventListener('change', (event) => {
+    const lenguajeSeleccionado = event.target.value;
+    const katasPorLenguajeDiv = document.getElementById('katasPorLenguajeDiv');
+    const katasPorLenguaje = agruparKatasPorLenguaje();
+
+    mostrarKatasPorCriterio(lenguajeSeleccionado, katasPorLenguaje, nombresKatasDiv, katasPorLenguajeDiv);
+  });
+
+  function mostrarKatasPorCriterio(valor, katasAgrupadas, divNombres, divKatas) {
+    const katas = katasAgrupadas[valor];
+    if (katas) {
+      const kataList = katas.map(
+        ({ nombre, index }) =>
+          `<li><a href="#" data-kata="${index}" data-${divKatas === 'katasPorDificultadDiv' ? 'dificultad' : 'lenguaje'}="${valor}">${nombre}</a></li>`
+      ).join('');
+      divNombres.innerHTML = `<h2>${valor}</h2><ul>${kataList}</ul>`;
+    }
+  }
   busquedaButton.addEventListener('click', () => {
     const searchTerm = busquedaInput.value.trim();
     const resultados = busquedaSimple(searchTerm);
