@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const detalles = detallesKata(kataIndex);
     detalleKataDiv.innerHTML = detalles;
   }
-  
+
   function mostrarKatasPorDificultad(dificultad) {
     const katas = katasPorDificultad[dificultad];
     if (katas) {

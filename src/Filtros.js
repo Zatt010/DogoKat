@@ -1,39 +1,26 @@
-import { obtenerNombres, detallesKata, dificultadKata,categoriaKata,lenguajekata } from './Kata.js';
+import { obtenerNombres, dificultadKata,categoriaKata,lenguajekata } from './Kata.js';
+
+function agruparKatasPorCriterio(obtenerValor) {
+  const nombres = obtenerNombres();
+
+  return nombres.reduce((katasAgrupadas, nombre, index) => {
+    const valor = obtenerValor(index);
+    katasAgrupadas[valor] = katasAgrupadas[valor] || [];
+    katasAgrupadas[valor].push({ nombre, index });
+    return katasAgrupadas;
+  }, {});
+}
 
 function agruparKatasPorDificultad() {
-  const nombres = obtenerNombres();
-  const katasPorDificultad = {};
-
-  nombres.forEach((nombre, index) => {
-    const dificultad = dificultadKata(index);
-    if (!katasPorDificultad[dificultad]) {
-      katasPorDificultad[dificultad] = [];
-    }
-    katasPorDificultad[dificultad].push({ nombre, index });
-  });
-
-  return katasPorDificultad;
+  return agruparKatasPorCriterio((index) => dificultadKata(index));
 }
 
 function agruparKatasPorCategoria() {
-  const nombres = obtenerNombres();
-  return nombres.reduce((KatasPorCategoria, nombre, index) => {
-    const categoria = categoriaKata(index);
-    KatasPorCategoria[categoria] = KatasPorCategoria[categoria] || [];
-    KatasPorCategoria[categoria].push({ nombre, index });
-    return KatasPorCategoria;
-  }, {});
+  return agruparKatasPorCriterio((index) => categoriaKata(index));
 }
+
 function agruparKatasPorLenguaje() {
-  const nombres = obtenerNombres();
-  return nombres.reduce((KatasPorLenguaje, nombre, index) => {
-    const lenguaje = lenguajekata(index); // Obtener el lenguaje de la kata actual
-    KatasPorLenguaje[lenguaje] = KatasPorLenguaje[lenguaje] || [];
-    KatasPorLenguaje[lenguaje].push({ nombre, index });
-    return KatasPorLenguaje;
-  }, {});
+  return agruparKatasPorCriterio((index) => lenguajekata(index));
 }
 
-
-export { agruparKatasPorDificultad,agruparKatasPorCategoria,agruparKatasPorLenguaje };
-
+export { agruparKatasPorDificultad, agruparKatasPorCategoria, agruparKatasPorLenguaje };
