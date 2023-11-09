@@ -11,13 +11,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const nombres = obtenerNombres();
   const katasPorDificultad = agruparKatasPorDificultad();
   const categoriaSelect = document.getElementById('categoriaSelect');
-  
+
   // Mostrar nombres en el HTML y manejo de los clics
   nombresKatasDiv.innerHTML = `<ul>${nombres.map((nombre, index) => `<li><a href="#" data-kata="${index}">${nombre}</a></li>`).join('')}</ul>`;
 
   nombresKatasDiv.addEventListener('click', (event) => {
     if (event.target.tagName === 'A') {
-      event.preventDefault(); 
+      event.preventDefault();
       const kataIndex = event.target.getAttribute('data-kata');
       //const dificultad = event.target.getAttribute('data-dificultad');
       mostrarDetallesDeKata(kataIndex);
