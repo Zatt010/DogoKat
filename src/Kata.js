@@ -7,12 +7,6 @@ class Kata{
     this.lenguaje = lenguaje;
   }
 }
-class login{
-  constructor(usuario, password) {
-    this.usuario = usuario;
-    this.password = password;
-  }
-}
 
 let Katas = [
   new Kata("KataBankOCR", "Detalles de la primera kata","Principiante","Matematicas","c++"),
@@ -20,14 +14,6 @@ let Katas = [
   new Kata("FooBarQix", "Detalles de la tercera kata","Intermedio","Tecnologia","phyton"),
   new Kata("KataPotter", "Detalles de la cuarta kata","Avanzado","Algoritmos","c++")
 ]
-//instancia de la clase login
-
-let usuarios = [
-  new login("pepe","123"),
-  new login("pedro","123")
-]
-
-
 
 function obtenerNombres() {
   return Katas.map(Kata => Kata.nombre);
@@ -54,13 +40,5 @@ function crearKata(nombreKata, detalleKata, dificultadKata, categoriaKata,lengua
     return false;
   }
 }
-function crearUsu(usuario,password){
-  if (password.length <= 3){
-   Katas.push(new login(usuario,password));
-    return true;
-  }
-  else{
-    return false;
-  }
-}
-export { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,lenguajekata,crearUsu };
+
+export { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,lenguajekata };
