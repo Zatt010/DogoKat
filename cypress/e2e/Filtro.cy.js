@@ -2,6 +2,12 @@ describe("Mostrar katas por dificultad", () => {
 });
 
 describe("Mostrar katas por categoria", () => {
+    it("Deberia mostrar todos los kata de la categoria 'Matematicas'", () => {
+        cy.visit("/");
+            cy.get("#categoriaSelect").select("Matematicas");
+        cy.get(".nombres-katas").should("contain","KataBankOCR");
+    
+    });
 });
 
 describe("Mostrar katas por lenguaje", () => {
