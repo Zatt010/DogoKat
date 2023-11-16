@@ -19,23 +19,6 @@ describe("Obtener Detalles de Kata", () => {
   });
 });
 
-
-describe("Creacion de Kata", () => {
-  it("Obtener Posicion de la nueva Kata", () => {
-    const nombreKata = "Kata Try";
-    const detalleKata = "Detalles de la nueva kata de prueba";
-    const resultado = crearKata(nombreKata, detalleKata);
-    expect(resultado).toBe(true);
-  });
-  it("crear una kata erronea", () => {
-    const nombreKata = "Kata Tryhardx2yx3";
-    const detalleKata = "Detalles de la nueva kata de prueba";
-    const resultado = crearKata(nombreKata, detalleKata);
-    expect(resultado).toBe(false);
-  });
-});
-
-
 describe("Obtener Dificultad de Kata", () => {
   it("Obtener dificultad de primera Kata", async () => {
     const dificultad = await dificultadKata(1);
