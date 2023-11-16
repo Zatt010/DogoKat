@@ -1,26 +1,33 @@
 <html>
-    <head>
-        <title>KitPatitasKat TDD</title>
-    </head>
+<head>
+    <title>KitPatitasKat TDD</title>
+</head>
 <body>
     <h1>Creación de Kata</h1>
     <form id="kata-form">
         <label for="nombre">Nombre de la Kata:</label>
         <input type="text" id="nombre" name="nombre" required>
+
         <label for="detalle">Detalle de la Kata:</label>
         <textarea id="detalle" name="detalle" rows="4" required></textarea>
 
         <label for="dificultad">Dificultad de la Kata:</label>
-            <select id="dificultad" name="dificultad" required>
+        <select id="dificultad" name="dificultad" required>
             <option value="Avanzado">Avanzado</option>
             <option value="Intermedio">Intermedio</option>
             <option value="Principiante">Principiante</option>
-            </select>
+        </select>
+
+        <label for="categoria">Categoría de la Kata:</label>
+        <input type="text" id="categoria" name="categoria" required>
+
+        <label for="lenguaje">Lenguaje de la Kata:</label>
+        <input type="text" id="lenguaje" name="lenguaje" required>
+
         <button type="submit" id="crearKataButton">Crear Kata</button>
         <button id="myButton">
             <a href="./index.html">Ir Inicio</a>
         </button>
-        </div>
     </form>
     <script type="module" src="../src/presenterKata.js"></script>
 </body>
