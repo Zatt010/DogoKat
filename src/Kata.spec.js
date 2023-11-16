@@ -9,13 +9,16 @@ describe("Obtener Lista de Kata", () => {
 
 
 describe("Obtener Detalles de Kata", () => {
-  it("Obtener detalle de primera Kata", () => {
-    expect(detallesKata(1)).toEqual("Detalles de la primera kata");
+  it("Obtener detalle de primera Kata", async () => {
+    const detalle = await detallesKata(1);
+    expect(detalle).toEqual("Detalles de la primera kata");
   });
-  it("Obtener detalle de la cuarta Kata", () => {
-    expect(detallesKata(4)).toEqual("Detalles de la cuarta kata");
+  it("Obtener detalle de la cuarta Kata", async () => {
+    const detalle = await detallesKata(4);
+    expect(detalle).toEqual("Detalles de la cuarta kata");
   });
 });
+
 
 describe("Creacion de Kata", () => {
   it("Obtener Posicion de la nueva Kata", () => {

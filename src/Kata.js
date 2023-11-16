@@ -29,7 +29,16 @@ function obtenerNombres() {
 }
 
 function detallesKata(kataIndex) {
-  return Katas[kataIndex].detalle;
+  return fetch(`http://localhost:3000/Katas/${kataIndex}`)
+    .then(response => response.json())
+    .then(data => {
+      const detalle = data.detalle;
+      return detalle;
+    })
+    .catch(error => {
+      console.error("Error al el detalle:", error);
+      return [];
+    });
 }
 
 
