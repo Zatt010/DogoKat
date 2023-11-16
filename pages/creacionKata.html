@@ -19,10 +19,19 @@
         </select>
 
         <label for="categoria">Categoría de la Kata:</label>
-        <input type="text" id="categoria" name="categoria" required>
+        <select id="categoria" name="categoria" required>
+            <option value="Matematicas">Matemáticas</option>
+            <option value="Juegos">Juegos</option>
+            <option value="Tecnologia">Tecnología</option>
+            <option value="Algoritmos">Algoritmos</option>
+        </select>
 
         <label for="lenguaje">Lenguaje de la Kata:</label>
-        <input type="text" id="lenguaje" name="lenguaje" required>
+        <select id="lenguaje" name="lenguaje" required>
+            <option value="c++">c++</option>
+            <option value="phyton">phyton</option>
+            <option value="javascript">javascript</option>
+        </select>
 
         <button type="submit" id="crearKataButton">Crear Kata</button>
         <button id="myButton">
