@@ -15,61 +15,50 @@ let Katas = [
   new Kata("KataPotter", "Detalles de la cuarta kata","Avanzado","Algoritmos","c++")
 ]
 
-function obtenerNombres() {
-  return fetch("http://localhost:3000/Katas")
-    .then(response => response.json())
-    .then(data => {
-      const nombres = data.map(kata => kata.nombre);
-      return nombres;
-    })
-    .catch(error => {
-      console.error("Error al cargar las canciones:", error);
-      return [];
-    });
-}
-
-function detallesKata(kataIndex) {
-  return fetch(`http://localhost:3000/Katas/${kataIndex}`)
-    .then(response => response.json())
-    .then(data => {
-      const detalle = data.detalle;
-      return detalle;
-    })
-    .catch(error => {
-      console.error("Error al el detalle:", error);
-      return [];
-    });
-}
-
-
-function dificultadKata(kataIndex) {
-  return fetch(`http://localhost:3000/Katas/${kataIndex}`)
-    .then(response => response.json())
-    .then(data => {
-      const dificultad = data.dificultad;
-      return dificultad;
-    })
-    .catch(error => {
-      console.error("Error:", error);
-      return [];
-    });
-}
-function categoriaKata(kataIndex) {
-  return fetch(`http://localhost:3000/Katas/${kataIndex}`)
-  .then(response => response.json())
-  .then(data => {
-    const categoria = data.categoria;
-    return categoria;
-  })
-  .catch(error => {
+// Funcion para realizar la llamada a la API
+async function fetchData(url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
     console.error("Error:", error);
-    return [];
-  });
+    return null;
+  }
 }
 
-function lenguajekata(kataIndex) {
-  return Katas[kataIndex].lenguaje;
+// Obtener nombres de las Katas
+async function obtenerNombres() {
+  const data = await fetchData("http://localhost:3000/Katas");
+  return data ? data.map(kata => kata.nombre) : [];
 }
+
+// Obtener detalle de una Kata
+async function detallesKata(kataIndex) {
+  const data = await fetchData(`http://localhost:3000/Katas/${kataIndex}`);
+  return data ? data.detalle : null;
+}
+
+// Obtener dificultad de una Kata
+async function dificultadKata(kataIndex) {
+  const data = await fetchData(`http://localhost:3000/Katas/${kataIndex}`);
+  return data ? data.dificultad : null;
+}
+
+// Obtener categoría de una Kata
+async function categoriaKata(kataIndex) {
+  const data = await fetchData(`http://localhost:3000/Katas/${kataIndex}`);
+  return data ? data.categoria : null;
+}
+
+// Obtener lenguaje de una Kata
+async function lenguajekata(kataIndex) {
+  const data = await fetchData(`http://localhost:3000/Katas/${kataIndex}`);
+  return data ? data.lenguaje : null;
+}
+
 function crearKata(nombreKata, detalleKata, dificultadKata, categoriaKata,lenguajekata) {
   if (nombreKata.length <= 13) {
     Katas.push(new Kata(nombreKata, detalleKata, dificultadKata, categoriaKata,lenguajekata));
