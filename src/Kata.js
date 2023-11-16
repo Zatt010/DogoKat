@@ -55,7 +55,16 @@ function dificultadKata(kataIndex) {
     });
 }
 function categoriaKata(kataIndex) {
-  return Katas[kataIndex].categoria;
+  return fetch(`http://localhost:3000/Katas/${kataIndex}`)
+  .then(response => response.json())
+  .then(data => {
+    const categoria = data.categoria;
+    return categoria;
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    return [];
+  });
 }
 
 function lenguajekata(kataIndex) {

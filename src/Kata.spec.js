@@ -48,14 +48,17 @@ describe("Obtener Dificultad de Kata", () => {
 });
 
 describe("Obtener Categoria de Kata", () => {
-  it("Obtener categoria de primera Kata", () => {
-    expect(categoriaKata(1)).toEqual("Matematicas");
+  it("Obtener categoria de primera Kata", async () => {
+    const categoria = await categoriaKata(1);
+    expect(categoria).toEqual("Matematicas");
   });
-  it("Obtener categoria de tercera kata", () => {
-    expect(categoriaKata(3)).toEqual("Algoritmos");
+  it("Obtener categoria de tercera kata", async () => {
+    const categoria = await categoriaKata(3);
+    expect(categoria).toEqual("Tecnologia");
   });
-  it("Obtener categoria categoria nro 2", () => {
-    expect(categoriaKata(1)).toEqual("Juegos");
+  it("Obtener categoria categoria nro 2", async () => {
+    const categoria = await categoriaKata(2);
+    expect(categoria).toEqual("Juegos");
   });
 
 });
