@@ -1,81 +1,61 @@
 import { agruparKatasPorDificultad, agruparKatasPorCategoria,agruparKatasPorLenguaje } from "./Filtros.js";
 
 describe("Agrupacion de Kata por dificultad", () => {
-  it("Agrupar Kata por dificultad", () => {
-    const result = agruparKatasPorDificultad();
+  it("Agrupar Kata por dificultad", async () => {
+    const result = await agruparKatasPorDificultad();
     expect(result).toEqual({
-        Principiante: [
-          { nombre: "KataBankOCR", index: 0 },
-          { nombre: "KataFizzBuzz", index: 1 }
-        ],
-        Intermedio: [
-          { nombre: "FooBarQix", index: 2 }
-        ],
-        Avanzado: [
-          { nombre: "KataPotter", index: 3 }
-        ]
-      });
+      Principiante: ["KataBankOCR", "KataFizzBuzz"],
+      Intermedio: ["FooBarQix"],
+      Avanzado: ["KataPotter"],
+    });
+  });
+
+  it("Verificar existencia de las dificultades", async () => {
+    const result = await agruparKatasPorDificultad();
+    expect(result).toHaveProperty("Principiante");
+    expect(result).toHaveProperty("Intermedio");
+    expect(result).toHaveProperty("Avanzado");
+  });
 });
-    it("Verificar existencia de las dificultades", () => {
-        const result = agruparKatasPorDificultad();
-        expect(result).toHaveProperty("Principiante");
-        expect(result).toHaveProperty("Intermedio");
-        expect(result).toHaveProperty("Avanzado");
-      });
-});
+
 describe("Agrupacion de Kata por categoria", () => {
-  it("Agrupar Kata por categoria", () => {
-      const result = agruparKatasPorCategoria();
-      expect(result).toEqual({
-          Matematicas: [
-            { nombre: "KataBankOCR", index: 0 },
-           
-          ],
-          Juegos: [
-            { nombre: "KataFizzBuzz", index: 1 }
-          ],
-          Tecnologia: [
-            { nombre: "FooBarQix", index: 2 }
-          ],
-          Algoritmos: [
-            { nombre: "KataPotter", index: 3 }
-          ],
-        });
+  it("Agrupar Kata por categoria", async () => {
+    const result = await agruparKatasPorCategoria();
+    expect(result).toEqual({
+      Matematicas: ["KataBankOCR"],
+      Juegos: ["KataFizzBuzz"],
+      Tecnologia: ["FooBarQix"],
+      Algoritmos: ["KataPotter"],
+    });
   });
-  it("Verificar existencia de las 1ra categoria", () => {
-    const result = agruparKatasPorCategoria();
+  it("Verificar existencia de las categorías", async () => {
+    const result = await agruparKatasPorCategoria();
     expect(result).toHaveProperty("Matematicas");
-    
-  });
-  it("Verificar existencia de las 2da categoria", () => {
-    const result = agruparKatasPorCategoria();
     expect(result).toHaveProperty("Juegos");
-    
+    expect(result).toHaveProperty("Tecnologia");
+    expect(result).toHaveProperty("Algoritmos");
   });
-  it("Verificar existencia el lenguaje c++", () => {
-    const result = agruparKatasPorLenguaje();
+});
+
+describe("Agrupacion de Kata por lenguaje", () => {
+  it("Agrupar Kata por lenguaje", async () => {
+    const result = await agruparKatasPorLenguaje();
+    expect(result).toEqual({
+      "c++": ["KataBankOCR", "KataPotter"],
+      javascript: ["KataFizzBuzz"],
+      phyton: ["FooBarQix"],
+    });
+  });
+
+  it("Verificar existencia de los lenguajes", async () => {
+    const result = await agruparKatasPorLenguaje();
     expect(result).toHaveProperty("c++");
-    
-  });
-  it("Verificar existencia el lenguaje javascript", () => {
-    const result = agruparKatasPorLenguaje();
     expect(result).toHaveProperty("javascript");
-    
-  });
-  it("Verificar existencia el lenguaje phyton", () => {
-    const result = agruparKatasPorLenguaje();
     expect(result).toHaveProperty("phyton");
-    
   });
-  it("Verificar que no existencia el lenguaje java", () => {
-    const result = agruparKatasPorLenguaje();
+
+  it("Verificar no existencia del lenguaje java", async () => {
+    const result = await agruparKatasPorLenguaje();
     expect(result).not.toHaveProperty("java");
-    
   });
-  it("Verificar que existencia estos lenguaje phyton c++", () => {
-    const result = agruparKatasPorLenguaje();
-    expect(result).not.toHaveProperty("phyton","c++");
-    
-  });
-  
 });
