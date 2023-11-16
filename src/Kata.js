@@ -43,7 +43,16 @@ function detallesKata(kataIndex) {
 
 
 function dificultadKata(kataIndex) {
-  return Katas[kataIndex].dificultad;
+  return fetch(`http://localhost:3000/Katas/${kataIndex}`)
+    .then(response => response.json())
+    .then(data => {
+      const dificultad = data.dificultad;
+      return dificultad;
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      return [];
+    });
 }
 function categoriaKata(kataIndex) {
   return Katas[kataIndex].categoria;

@@ -37,11 +37,13 @@ describe("Creacion de Kata", () => {
 
 
 describe("Obtener Dificultad de Kata", () => {
-  it("Obtener dificultad de primera Kata", () => {
-    expect(dificultadKata(1)).toEqual("Principiante");
+  it("Obtener dificultad de primera Kata", async () => {
+    const dificultad = await dificultadKata(1);
+    expect(dificultad).toEqual("Principiante");
   });
-  it("Obtener dificultad de la cuarta Kata", () => {
-    expect(dificultadKata(3)).toEqual("Avanzado");
+  it("Obtener dificultad de la cuarta Kata", async () => {
+    const dificultad = await dificultadKata(4);
+    expect(dificultad).toEqual("Avanzado");
   });
 });
 
