@@ -4,7 +4,7 @@
   "description": "npm install",
   "default": "index.html",
   "scripts": {
-    "start": "parcel pages/*.html",
+    "start": "parcel pages/*.html & json-server --watch db.json",
     "build": "parcel build pages/*.html",
     "test": "jest --watch",
     "test-once": "jest --verbose --coverage",
@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/Zatt010/DogoKat#readme",
   "dependencies": {
-    "parcel-bundler": "^1.12.5"
+    "parcel-bundler": "^1.12.5",
+    "json-server": "^0.17.4"
   }
 }

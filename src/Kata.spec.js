@@ -1,18 +1,19 @@
 import { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata } from "./Kata.js";
 
-
 describe("Obtener Lista de Kata", () => {
-  it("Obtener multiples nombres desde el js", () => {
-    expect(obtenerNombres()).toEqual(["KataBankOCR","KataFizzBuzz","FooBarQix","KataPotter"]);
+  it("Obtener multiples nombres desde el js", async () => {
+    const nombres = await obtenerNombres();
+    expect(nombres).toEqual(["KataBankOCR","KataFizzBuzz","FooBarQix","KataPotter"]);
   });
 });
 
+
 describe("Obtener Detalles de Kata", () => {
   it("Obtener detalle de primera Kata", () => {
-    expect(detallesKata(0)).toEqual("Detalles de la primera kata");
+    expect(detallesKata(1)).toEqual("Detalles de la primera kata");
   });
   it("Obtener detalle de la cuarta Kata", () => {
-    expect(detallesKata(3)).toEqual("Detalles de la cuarta kata");
+    expect(detallesKata(4)).toEqual("Detalles de la cuarta kata");
   });
 });
 
@@ -34,7 +35,7 @@ describe("Creacion de Kata", () => {
 
 describe("Obtener Dificultad de Kata", () => {
   it("Obtener dificultad de primera Kata", () => {
-    expect(dificultadKata(0)).toEqual("Principiante");
+    expect(dificultadKata(1)).toEqual("Principiante");
   });
   it("Obtener dificultad de la cuarta Kata", () => {
     expect(dificultadKata(3)).toEqual("Avanzado");
@@ -43,7 +44,7 @@ describe("Obtener Dificultad de Kata", () => {
 
 describe("Obtener Categoria de Kata", () => {
   it("Obtener categoria de primera Kata", () => {
-    expect(categoriaKata(0)).toEqual("Matematicas");
+    expect(categoriaKata(1)).toEqual("Matematicas");
   });
   it("Obtener categoria de tercera kata", () => {
     expect(categoriaKata(3)).toEqual("Algoritmos");
@@ -51,4 +52,5 @@ describe("Obtener Categoria de Kata", () => {
   it("Obtener categoria categoria nro 2", () => {
     expect(categoriaKata(1)).toEqual("Juegos");
   });
+
 });

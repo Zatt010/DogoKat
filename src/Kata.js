@@ -16,12 +16,22 @@ let Katas = [
 ]
 
 function obtenerNombres() {
-  return Katas.map(Kata => Kata.nombre);
+  return fetch("http://localhost:3000/Katas")
+    .then(response => response.json())
+    .then(data => {
+      const nombres = data.map(kata => kata.nombre);
+      return nombres;
+    })
+    .catch(error => {
+      console.error("Error al cargar las canciones:", error);
+      return [];
+    });
 }
 
 function detallesKata(kataIndex) {
   return Katas[kataIndex].detalle;
 }
+
 
 function dificultadKata(kataIndex) {
   return Katas[kataIndex].dificultad;
@@ -29,7 +39,8 @@ function dificultadKata(kataIndex) {
 function categoriaKata(kataIndex) {
   return Katas[kataIndex].categoria;
 }
-function lenguajekata(kataIndex){
+
+function lenguajekata(kataIndex) {
   return Katas[kataIndex].lenguaje;
 }
 function crearKata(nombreKata, detalleKata, dificultadKata, categoriaKata,lenguajekata) {

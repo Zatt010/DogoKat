@@ -1,0 +1,36 @@
+{
+    "Katas": [
+        {
+            "id": 1,
+            "nombre": "KataBankOCR",
+            "detalle": "Detalles de la primera kata",
+            "dificultad": "Principiante",
+            "categoria": "Matematicas",
+            "lenguaje": "c++"
+        },
+        {
+            "id": 2,
+            "nombre": "KataFizzBuzz",
+            "detalle": "Detalles de la segunda kata",
+            "dificultad": "Principiante",
+            "categoria": "Juegos",
+            "lenguaje": "javascript"
+        },
+        {
+            "id": 3,
+            "nombre": "FooBarQix",
+            "detalle": "Detalles de la tercera kata",
+            "dificultad": "Intermedio",
+            "categoria": "Tecnologia",
+            "lenguaje": "phyton"
+        },
+        {
+            "id": 4,
+            "nombre": "KataPotter",
+            "detalle": "Detalles de la cuarta kata",
+            "dificultad": "Avanzado",
+            "categoria": "Algoritmos",
+            "lenguaje": "c++"
+        }
+    ]
+}
