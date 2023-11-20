@@ -54,9 +54,9 @@ describe("Obtener Categoria de Kata", () => {
 });
 
 describe("Modificar Kata", () => {
-  it("Modificar el nombre de la primera Kata", () => {
+  it("Modificar el nombre, Detalle de la primera Kata", () => {
     const indexAModificar = 0;
-    const exitoModificacion = modificarKata(indexAModificar, "NuevoNombre");
+    const exitoModificacion = modificarKata(indexAModificar, "NuevoNombre", "Detalle cambiado");
     expect(exitoModificacion).toBe(true);
   });
 });

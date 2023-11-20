@@ -41,9 +41,9 @@ function crearKata(nombreKata, detalleKata, dificultadKata, categoriaKata,lengua
   }
 }
 
-
-function modificarKata(index, nuevoNombre) {
+function modificarKata(index, nuevoNombre, nuevoDetalle) {
   Katas[index].nombre = nuevoNombre;
+  Katas[index].detalle = nuevoDetalle;
   return true;
 }
 
