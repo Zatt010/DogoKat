@@ -59,4 +59,9 @@ describe("Modificar Kata", () => {
     const exitoModificacion = modificarKata(indexAModificar, "NuevoNombre", "Detalle cambiado","Avanzado","Juegos","phyton");
     expect(exitoModificacion).toBe(true);
   });
+  it('Modificar Kata inexistente', () => {
+    const indexFueraDeLimites = 10;
+    const exitoModificacion = modificarKata(indexFueraDeLimites, "NuevoNombre", "Detalle cambiado","Avanzado","Juegos","phyton");
+    expect(exitoModificacion).toBe(false);
+  });
 });
