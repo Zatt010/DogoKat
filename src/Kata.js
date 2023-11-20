@@ -41,4 +41,10 @@ function crearKata(nombreKata, detalleKata, dificultadKata, categoriaKata,lengua
   }
 }
 
-export { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,lenguajekata };
+
+function modificarKata(index, nuevoNombre) {
+  Katas[index].nombre = nuevoNombre;
+  return true;
+}
+
+export { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,lenguajekata,modificarKata };

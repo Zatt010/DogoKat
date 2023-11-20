@@ -1,4 +1,4 @@
-import { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata } from "./Kata.js";
+import { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,modificarKata } from "./Kata.js";
 
 
 describe("Obtener Lista de Kata", () => {
@@ -50,5 +50,13 @@ describe("Obtener Categoria de Kata", () => {
   });
   it("Obtener categoria categoria nro 2", () => {
     expect(categoriaKata(1)).toEqual("Juegos");
+  });
+});
+
+describe("Modificar Kata", () => {
+  it("Modificar el nombre de la primera Kata", () => {
+    const indexAModificar = 0;
+    const exitoModificacion = modificarKata(indexAModificar, "NuevoNombre");
+    expect(exitoModificacion).toBe(true);
   });
 });
