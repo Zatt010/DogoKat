@@ -54,10 +54,12 @@ describe("Obtener Categoria de Kata", () => {
 });
 
 describe("Modificar Kata", () => {
-  it("Modificar el nombre, Detalle,Dificultad de la primera Kata", () => {
+  it("Modificar los detalles y verificar el cambio de atributo", () => {
     const indexAModificar = 0;
     const exitoModificacion = modificarKata(indexAModificar, "NuevoNombre", "Detalle cambiado","Avanzado","Juegos","phyton");
     expect(exitoModificacion).toBe(true);
+    const kata = obtenerNombres();
+    expect(kata[indexAModificar]).toBe("NuevoNombre");
   });
   it('Modificar Kata inexistente', () => {
     const indexFueraDeLimites = 10;
