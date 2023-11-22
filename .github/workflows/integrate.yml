@@ -27,6 +27,7 @@ jobs:
         with:
           start: npm start
           wait-on: "http://localhost:1234"
+          wait-on-timeout: 100000
       #####
       #- name: Build for deploy
       #  run: npm run build
