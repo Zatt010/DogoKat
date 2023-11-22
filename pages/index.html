@@ -1,46 +1,37 @@
-<html>
-  <head>
-    <title>KitPatitasKat TDD</title>
-  </head>
-  <body>
-    <h1>KitPatitasKat TDD</h1>
-    <label for="dificultadSelect">Seleccionar Dificultad:</label>
-    <select id="dificultadSelect">
-      <option value="Principiante">Principiante</option>
-      <option value="Intermedio">Intermedio</option>
-      <option value="Avanzado">Avanzado</option>
-    </select>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  
+</head>
+<body>
+    <h1 style="text-align: center;">LOGIN</h1>
+   
+  <div style="text-align: center;">
+    <form id="login-form" class="flexbox-align__content">
 
-    <label for="categoriaSelect">Seleccionar Categoría:</label>
-      <select id="categoriaSelect">
-        <option value="Matematicas">Matemáticas</option>
-        <option value="Juegos">Juegos</option>
-        <option value="Tecnologia">Tecnología</option>
-        <option value="Algoritmos">Algoritmos</option>
+      <label for="username">Nombre:</label>
+      <input type="text" id="username" name="username" required>
+        <br></br>
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" name="password" required>
+        <br></br>
+      <label for="role">Selecciona tu rol:</label>
+      <select id="role" name="role">
+        <option value="maestro">Maestro</option>
+        <option value="alumno">Alumno</option>
       </select>
+      
+      <button style="display:block-inline"  type="button" id="login-button">Iniciar sesión</button>
+      
+    </form>
+     </div>
+ 
 
-      <label for="lenguajeSelect">Seleccionar lenguaje:</label>
-      <select id="lenguajeSelect">
-        <option value="c++">c++</option>
-        <option value="phyton">phyton</option>
-        <option value="javascript">javascript</option>
-      </select>
-      <button id="crearKata">Ir a Creación de Kata</button>
-      <div class="form" id="formulario-kata"></div>
-      
-    <br></br>
-    <div class="contenido" id="contenido-principal">
-      <input type="text" id="busquedaInput" placeholder="Buscar Kata">
-      <button id="busquedaButton">Buscar</button>
-      <div class="nombres-katas"></div>
-      <div class="detalle-Kata"></div>
-     
-      
-     
-      <div id="katasPorCategoriaDiv"></div>
-      <div id="katasPorLenguajeDiv"></div>
-     
-    </div>
-    <script type="module" src="../src/presenter.js"></script>
-  </body>
+     <script  type="module" src="../src/presenterLogin.js"></script>
+    
+  
+</body>
 </html>

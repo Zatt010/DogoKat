@@ -6,8 +6,8 @@ class login{
 }
 
 let usuarios = [
-    new login("pepe","123"),
-    new login("pedro","123")
+    new login("maestro","123"),
+    new login("alumno","123")
 ]
 
 function crearUsu(usuario,password){
@@ -19,5 +19,6 @@ function crearUsu(usuario,password){
         return false;
     }
 }
+
 
 export {crearUsu}

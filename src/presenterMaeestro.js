@@ -13,9 +13,7 @@ document.addEventListener('DOMContentLoaded', inicializarApp);
 
 function inicializarApp() {
   // Después de realizar alguna validación u operación
-document.getElementById('login-button').style.display = 'inline-block';
 
-  document.getElementById('login-button').addEventListener('click', VerificarUsuario);
 
   const nombresKatasDiv = document.querySelector('.nombres-katas');
   const detalleKataDiv = document.querySelector('.detalle-Kata');
@@ -27,25 +25,7 @@ document.getElementById('login-button').style.display = 'inline-block';
   const crearKataButton = document.getElementById('crearKata');
   // Agrega un evento click al botón para llamar a la función login
 
-  function VerificarUsuario() {
-    // Obtener valores del formulario
-    var username = document.getElementById('username').value;
-    var password = document.getElementById('password').value;
-    var role = document.getElementById('role').value;
-    
-
-    //var esUsuarioValido = VerificarUsu(username,password)
-    // Validar nombre de usuario y contraseña (puedes agregar tu propia lógica aquí)
-
-    
-      // Redirigir según el rol
-      if ((username === 'maestro') && (password === '123') && (role === 'maestro') ) {
-        window.location.href = 'maestro.html';
-      } else if ((username === 'alumno') && (password === '123') && (role === 'alumno') ) {
-        window.location.href = 'alumno.html';
-      }
-
-  }
+ 
 
   cargarNombres();
 
