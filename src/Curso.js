@@ -10,7 +10,7 @@ class Curso{
 
 let Cursos = [
   new Curso("IngeSofw", "Nuevo curso del semestre"),
-  new Curso("PracInge", "Nuevo curso del semestre")
+  new Curso("PracInge", "Nuevo curso del semestre2")
 ]
 
 function obtenerNombres(CursoIndex) {
@@ -25,7 +25,7 @@ function crearCurso(nombreCurso, detalleCurso) {
 
     if (nombreCurso.length <= 20) {
       Cursos.push(new Curso(nombreCurso, detalleCurso));
-      return true
+      return true;
     } else {
       return false;
     }

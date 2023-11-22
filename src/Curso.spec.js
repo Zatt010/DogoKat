@@ -20,4 +20,11 @@ describe("Obtener Nombre de Curso Creado", () => {
    });
     
 });
+describe("Obtener Detalle de Curso Creado", () => {
+  it("Obtener  detalle  del curso1 creado del js", () => {
+     expect(detallesCurso(0)).toEqual("Nuevo curso del semestre");
+    
+  });
 
+   
+});
