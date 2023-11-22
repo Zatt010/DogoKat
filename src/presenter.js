@@ -13,22 +13,26 @@ function inicializarApp() {
   const lenguajeSelect = document.getElementById('lenguajeSelect');
   const categoriaSelect = document.getElementById('categoriaSelect');
   const crearKataButton = document.getElementById('crearKata');
-
   cargarNombres();
-
   busquedaButton.addEventListener('click', realizarBusqueda);
-
   dificultadSelect.addEventListener('change', () => mostrarKatasPorCriterio(dificultadSelect.value, agruparKatasPorDificultad()));
   categoriaSelect.addEventListener('change', () => mostrarKatasPorCriterio(categoriaSelect.value, agruparKatasPorCategoria()));
   lenguajeSelect.addEventListener('change', () => mostrarKatasPorCriterio(lenguajeSelect.value, agruparKatasPorLenguaje()));
 
+  function generarListaKatasHTML(katas, buttonClass) {
+    return `<ul>${katas.map(({ nombre, index }) => `
+      <li>
+        <a href="#" data-kata="${index}">${nombre}</a>
+        <button class="${buttonClass}" data-kata="${index}">Modificar</button>
+      </li>`).join('')}</ul>`;
+  }
+
   function mostrarKatasPorCriterio(valor, katasAgrupadas) {
     const divKatas = document.getElementById(`katasPor${capitalize(valor)}Div`);
     const katas = katasAgrupadas[valor];
-
     if (katas) {
-      const kataList = katas.map(({ nombre, index }) => `<li><a href="#" data-kata="${index}">${nombre}</a></li>`).join('');
-      nombresKatasDiv.innerHTML = `<h2>${valor}</h2><ul>${kataList}</ul>`;
+      const kataList = generarListaKatasHTML(katas, 'modificar-button');
+      nombresKatasDiv.innerHTML = `<h2>${valor}</h2>${kataList}`;
     }
   }
 
@@ -54,7 +58,8 @@ function inicializarApp() {
     const searchTerm = busquedaInput.value.trim();
     const resultados = busquedaSimple(searchTerm);
     if (resultados && resultados.length > 0) {
-      nombresKatasDiv.innerHTML = `<ul>${resultados.map((nombre, index) => `<li><a href="#" data-kata="${index}">${nombre}</a></li>`).join('')}</ul>`;
+      const listaResultadosHTML = generarListaKatasHTML(resultados, 'modificar-button');
+      nombresKatasDiv.innerHTML = listaResultadosHTML;
     } else {
       nombresKatasDiv.innerHTML = 'Kata no encontrada';
     }
@@ -92,7 +97,6 @@ document.addEventListener('click', function (event) {
     manejarCargaFormulario(formularios.cargarFormularioModificacion(kataIndex), 'Formulario de modificación cargado con éxito');
   }
 });
-
 crearKataButton.addEventListener('click', function() {
   manejarCargaFormulario(formularios.cargarFormularioCreacionKata(), 'Formulario de creación cargado con éxito');
 });
