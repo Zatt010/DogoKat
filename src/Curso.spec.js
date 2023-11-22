@@ -14,6 +14,10 @@ describe("Obtener Nombre de Curso Creado", () => {
        expect(obtenerNombres(0)).toEqual("IngeSofw");
       
     });
+    it("Obtener  nombre del curso 2 creado del js", () => {
+      expect(obtenerNombres(1)).toEqual("PracInge");
+     
+   });
     
 });
 
