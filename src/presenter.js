@@ -58,8 +58,7 @@ function inicializarApp() {
     const searchTerm = busquedaInput.value.trim();
     const resultados = busquedaSimple(searchTerm);
     if (resultados && resultados.length > 0) {
-      const listaResultadosHTML = generarListaKatasHTML(resultados, 'modificar-button');
-      nombresKatasDiv.innerHTML = listaResultadosHTML;
+      nombresKatasDiv.innerHTML = `<ul>${resultados.map((nombre, index) => `<li><a href="#" data-kata="${index}">${nombre}</a><button class="modificar-button" data-kata="${index}">Modificar</button></li>`).join('')}</ul>`;
     } else {
       nombresKatasDiv.innerHTML = 'Kata no encontrada';
     }

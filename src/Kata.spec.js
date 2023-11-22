@@ -70,7 +70,7 @@ describe("Modificar Kata", () => {
 
 describe("Eliminando Katas", () => {
   it("Eliminar la primera Kata", () => {
-    eliminarKata();
+    eliminarKata(0);
     expect(obtenerNombres()).toEqual(["KataFizzBuzz","FooBarQix","KataPotter","Kata Try"]);
   });
 });
