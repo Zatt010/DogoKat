@@ -56,6 +56,10 @@ function modificarKata(index, nuevoNombre, nuevoDetalle,nuevaDificultad,nuevaCat
 
 function eliminarKata(index)
 {
-  Katas.splice(index, 1);
+  if (index >= 0 && index < Katas.length) {
+    Katas.splice(index, 1);
+    return true;
+  }
+  return false;
 }
 export { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,lenguajekata,modificarKata,eliminarKata };

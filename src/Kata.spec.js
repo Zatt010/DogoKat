@@ -73,4 +73,8 @@ describe("Eliminando Katas", () => {
     eliminarKata(0);
     expect(obtenerNombres()).toEqual(["KataFizzBuzz","FooBarQix","KataPotter","Kata Try"]);
   });
+  it("Eliminar Kata que no existe en el array", () => {
+    const resultado = eliminarKata(10);
+    expect(resultado).toBe(false);
+  });
 });
