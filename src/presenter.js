@@ -1,4 +1,4 @@
-import { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,modificarKata,lenguajekata } from "./Kata.js";
+import { obtenerNombres, detallesKata, eliminarKata } from "./Kata.js";
 import { busquedaSimple } from './Busqueda.js';
 import { agruparKatasPorDificultad, agruparKatasPorCategoria, agruparKatasPorLenguaje } from './Filtros.js';
 import * as formularios from './formulariosKata.js';
@@ -19,11 +19,12 @@ function inicializarApp() {
   categoriaSelect.addEventListener('change', () => mostrarKatasPorCriterio(categoriaSelect.value, agruparKatasPorCategoria()));
   lenguajeSelect.addEventListener('change', () => mostrarKatasPorCriterio(lenguajeSelect.value, agruparKatasPorLenguaje()));
 
-  function generarListaKatasHTML(katas, buttonClass) {
+  function generarListaKatasHTML(katas) {
     return `<ul>${katas.map(({ nombre, index }) => `
       <li>
         <a href="#" data-kata="${index}">${nombre}</a>
-        <button class="${buttonClass}" data-kata="${index}">Modificar</button>
+        <button class="modificar-button" data-kata="${index}">Modificar</button>
+        <button class="eliminar-button" data-kata="${index}">Eliminar</button>
       </li>`).join('')}</ul>`;
   }
 
@@ -31,7 +32,7 @@ function inicializarApp() {
     const divKatas = document.getElementById(`katasPor${capitalize(valor)}Div`);
     const katas = katasAgrupadas[valor];
     if (katas) {
-      const kataList = generarListaKatasHTML(katas, 'modificar-button');
+      const kataList = generarListaKatasHTML(katas);
       nombresKatasDiv.innerHTML = `<h2>${valor}</h2>${kataList}`;
     }
   }
@@ -42,6 +43,7 @@ function inicializarApp() {
       <li>
         <a href="#" data-kata="${index}">${nombre}</a>
         <button class="modificar-button" data-kata="${index}">Modificar</button>
+        <button class="eliminar-button" data-kata="${index}">Eliminar</button>
       </li>`).join('')}</ul>`;
     nombresKatasDiv.addEventListener('click', manejarClickNombre);
   }
@@ -58,7 +60,7 @@ function inicializarApp() {
     const searchTerm = busquedaInput.value.trim();
     const resultados = busquedaSimple(searchTerm);
     if (resultados && resultados.length > 0) {
-      nombresKatasDiv.innerHTML = `<ul>${resultados.map((nombre, index) => `<li><a href="#" data-kata="${index}">${nombre}</a><button class="modificar-button" data-kata="${index}">Modificar</button></li>`).join('')}</ul>`;
+      nombresKatasDiv.innerHTML = `<ul>${resultados.map((nombre, index) => `<li><a href="#" data-kata="${index}">${nombre}</a><button class="modificar-button" data-kata="${index}">Modificar</button><button class="eliminar-button" data-kata="${index}">Eliminar</button></li>`).join('')}</ul>`;
     } else {
       nombresKatasDiv.innerHTML = 'Kata no encontrada';
     }
@@ -73,7 +75,6 @@ function inicializarApp() {
     return text.charAt(0).toUpperCase() + text.slice(1);
   }
 
-// Función común para manejar la lógica de carga de formularios
 function manejarCargaFormulario(promesa) {
   promesa
     .then(resultado => {
@@ -96,6 +97,21 @@ document.addEventListener('click', function (event) {
     manejarCargaFormulario(formularios.cargarFormularioModificacion(kataIndex), 'Formulario de modificación cargado con éxito');
   }
 });
+document.addEventListener('click', function (event) {
+  if (event.target.classList.contains('eliminar-button')) {
+    console.log('presionando eliminar');
+    const kataIndex = event.target.getAttribute('data-kata');
+    const eliminacionExitosa = eliminarKata(kataIndex);
+    if (eliminacionExitosa) {
+      alert('Kata eliminada con éxito');
+      cargarNombres();
+    } else {
+      console.log('No se pudo eliminar la Kata. Verifica el índice proporcionado.');
+    }
+  }
+});
+
+
 crearKataButton.addEventListener('click', function() {
   manejarCargaFormulario(formularios.cargarFormularioCreacionKata(), 'Formulario de creación cargado con éxito');
 });
