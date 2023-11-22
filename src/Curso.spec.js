@@ -1,4 +1,4 @@
-import{ obtenerNombres, detallesCurso, crearCurso } from "./Curso.js";
+import{crearCurso, obtenerNombres, detallesCurso } from "./Curso.js";
 
 describe("Creacion de Curso", () => {
     it("Obtener Posicion de la nueva Curso", () => {
@@ -7,6 +7,13 @@ describe("Creacion de Curso", () => {
       const resultado = crearCurso(nombreCurso, detalleCurso);
       expect(resultado).toBe(true);
     });
-  
+    
 });
-  
+describe("Obtener Nombre de Curso Creado", () => {
+    it("Obtener  nombre del curso creado del js", () => {
+       expect(obtenerNombres(0)).toEqual("IngeSofw");
+      
+    });
+    
+});
+

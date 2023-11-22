@@ -9,11 +9,12 @@ class Curso{
 }
 
 let Cursos = [
-  new Curso("IngeSofw", "Nuevo curso del semestre")
-
+  new Curso("IngeSofw", "Nuevo curso del semestre"),
+  new Curso("PracInge", "Nuevo curso del semestre")
 ]
-function obtenerNombres() {
-    return Cursos.map(Curso => Curso.nombre);
+
+function obtenerNombres(CursoIndex) {
+    return Cursos[CursoIndex].nombre;
 }
   
 function detallesCurso(CursoIndex) {
@@ -21,6 +22,7 @@ function detallesCurso(CursoIndex) {
 }
 
 function crearCurso(nombreCurso, detalleCurso) {
+
     if (nombreCurso.length <= 20) {
       Cursos.push(new Curso(nombreCurso, detalleCurso));
       return true
@@ -29,4 +31,4 @@ function crearCurso(nombreCurso, detalleCurso) {
     }
 }
 
-export { obtenerNombres, detallesCurso,crearCurso}
+export {crearCurso, obtenerNombres,detallesCurso}
