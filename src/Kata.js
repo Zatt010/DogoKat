@@ -41,4 +41,25 @@ function crearKata(nombreKata, detalleKata, dificultadKata, categoriaKata,lengua
   }
 }
 
-export { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,lenguajekata };
+function modificarKata(index, nuevoNombre, nuevoDetalle,nuevaDificultad,nuevaCategoria,nuevoLenguaje) {
+  if (index >= 0 && index < Katas.length) {
+    Katas[index].nombre = nuevoNombre;
+    Katas[index].detalle = nuevoDetalle;
+    Katas[index].dificultad = nuevaDificultad;
+    Katas[index].categoria = nuevaCategoria;
+    Katas[index].lenguaje = nuevoLenguaje;
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function eliminarKata(index)
+{
+  if (index >= 0 && index < Katas.length) {
+    Katas.splice(index, 1);
+    return true;
+  }
+  return false;
+}
+export { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,lenguajekata,modificarKata,eliminarKata };

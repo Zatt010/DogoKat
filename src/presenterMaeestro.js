@@ -1,20 +1,12 @@
-import { obtenerNombres, detallesKata, crearKata } from './Kata.js';
+import { obtenerNombres, detallesKata, eliminarKata } from "./Kata.js";
 import { busquedaSimple } from './Busqueda.js';
 import { agruparKatasPorDificultad, agruparKatasPorCategoria, agruparKatasPorLenguaje } from './Filtros.js';
-import { crearUsu } from './login.js';
-// presenter.js
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('Presenter.js se ha ejecutado correctamente');
-  // Coloca el resto de tu lógica aquí
-});
+import * as formularios from './formulariosKata.js';
 
 document.addEventListener('DOMContentLoaded', inicializarApp);
 
-
 function inicializarApp() {
-  // Después de realizar alguna validación u operación
-
-
+  console.log('presenter maestro cargado')
   const nombresKatasDiv = document.querySelector('.nombres-katas');
   const detalleKataDiv = document.querySelector('.detalle-Kata');
   const busquedaButton = document.getElementById('busquedaButton');
@@ -23,36 +15,43 @@ function inicializarApp() {
   const lenguajeSelect = document.getElementById('lenguajeSelect');
   const categoriaSelect = document.getElementById('categoriaSelect');
   const crearKataButton = document.getElementById('crearKata');
-  // Agrega un evento click al botón para llamar a la función login
-
- 
-
   cargarNombres();
-
-
-
-  crearKataButton.addEventListener('click', cargarFormularioKata);
   busquedaButton.addEventListener('click', realizarBusqueda);
-
   dificultadSelect.addEventListener('change', () => mostrarKatasPorCriterio(dificultadSelect.value, agruparKatasPorDificultad()));
   categoriaSelect.addEventListener('change', () => mostrarKatasPorCriterio(categoriaSelect.value, agruparKatasPorCategoria()));
   lenguajeSelect.addEventListener('change', () => mostrarKatasPorCriterio(lenguajeSelect.value, agruparKatasPorLenguaje()));
 
+  function generarListaKatasHTML(katas) {
+    return `<ul>${katas.map(({ nombre, index }) => `
+      <li>
+        <a href="#" data-kata="${index}">${nombre}</a>
+        <button class="modificar-button" data-kata="${index}">Modificar</button>
+        <button class="eliminar-button" data-kata="${index}">Eliminar</button>
+      </li>`).join('')}</ul>`;
+  }
+
   function mostrarKatasPorCriterio(valor, katasAgrupadas) {
     const divKatas = document.getElementById(`katasPor${capitalize(valor)}Div`);
     const katas = katasAgrupadas[valor];
-
     if (katas) {
-      const kataList = katas.map(({ nombre, index }) => `<li><a href="#" data-kata="${index}">${nombre}</a></li>`).join('');
-      nombresKatasDiv.innerHTML = `<h2>${valor}</h2><ul>${kataList}</ul>`;
+      const kataList = generarListaKatasHTML(katas);
+      nombresKatasDiv.innerHTML = `<h2>${valor}</h2>${kataList}`;
     }
   }
 
   function cargarNombres() {
-    const nombres = obtenerNombres();
-    nombresKatasDiv.innerHTML = `<ul>${nombres.map((nombre, index) => `<li><a href="#" data-kata="${index}">${nombre}</a></li>`).join('')}</ul>`;
+    let nombres = obtenerNombres();
+    const listaHTML = nombres.map((nombre, index) => `
+      <li>
+        <a href="#" data-kata="${index}">${nombre}</a>
+        <button class="modificar-button" data-kata="${index}">Modificar</button>
+        <button class="eliminar-button" data-kata="${index}">Eliminar</button>
+      </li>`
+    ).join('');
+    console.log('Lista HTML generada:', listaHTML);
+    nombresKatasDiv.innerHTML = `<ul>${listaHTML}</ul>`;
     nombresKatasDiv.addEventListener('click', manejarClickNombre);
-  }
+}
 
   function manejarClickNombre(event) {
     if (event.target.tagName === 'A') {
@@ -66,47 +65,9 @@ function inicializarApp() {
     const searchTerm = busquedaInput.value.trim();
     const resultados = busquedaSimple(searchTerm);
     if (resultados && resultados.length > 0) {
-      nombresKatasDiv.innerHTML = `<ul>${resultados.map((nombre, index) => `<li><a href="#" data-kata="${index}">${nombre}</a></li>`).join('')}</ul>`;
+      nombresKatasDiv.innerHTML = `<ul>${resultados.map((nombre, index) => `<li><a href="#" data-kata="${index}">${nombre}</a><button class="modificar-button" data-kata="${index}">Modificar</button><button class="eliminar-button" data-kata="${index}">Eliminar</button></li>`).join('')}</ul>`;
     } else {
       nombresKatasDiv.innerHTML = 'Kata no encontrada';
-    }
-  }
-
-  function cargarFormularioKata() {
-    fetch('./creacionKata.html')
-      .then(response => response.text())
-      .then(html => {
-        document.getElementById('formulario-kata').innerHTML = html;
-        const crearKataForm = document.getElementById('kata-form');
-        crearKataForm.addEventListener('submit', manejarSubmitFormulario);
-      })
-      .catch(error => console.error('Error al cargar el formulario:', error));
-  }
-
-  function manejarSubmitFormulario(event) {
-    event.preventDefault();
-
-    const nombreKataInput = document.getElementById('nombre');
-    const detalleKataInput = document.getElementById('detalle');
-    const dificultadKataSelect = document.getElementById('dificultad');
-    const categoriaKataSelect = document.getElementById('categoria');
-    const lenguajeKataSelect = document.getElementById('lenguaje');
-
-    const nombreKata = nombreKataInput.value;
-    const detalleKata = detalleKataInput.value;
-    const dificultadKata = dificultadKataSelect.value;
-    const categoriaKata = categoriaKataSelect.value;
-    const lenguajeKata = lenguajeKataSelect.value;
-
-    const kataCreada = crearKata(nombreKata, detalleKata, dificultadKata, categoriaKata, lenguajeKata);
-
-    if (kataCreada) {
-      alert('Kata creada con éxito');
-      const formularioKata = document.getElementById('formulario-kata');
-      formularioKata.style.display = 'none';
-      cargarNombres();
-    } else {
-      alert('Error al crear la Kata');
     }
   }
 
@@ -118,6 +79,45 @@ function inicializarApp() {
   function capitalize(text) {
     return text.charAt(0).toUpperCase() + text.slice(1);
   }
+
+function manejarCargaFormulario(promesa) {
+  promesa
+    .then(resultado => {
+      if (resultado) {
+        console.log('recibido', resultado);
+        cargarNombres();
+      } else {
+        console.log('no recibido', resultado);
+      }
+    })
+    .catch(error => {
+      console.error('Error al cargar el formulario:', error);
+    });
 }
 
+document.addEventListener('click', function (event) {
+  if (event.target.classList.contains('modificar-button')) {
+    console.log('presionando modificar');
+    const kataIndex = event.target.getAttribute('data-kata');
+    manejarCargaFormulario(formularios.cargarFormularioModificacion(kataIndex), 'Formulario de modificación cargado con éxito');
+  }
+});
+document.addEventListener('click', function (event) {
+  if (event.target.classList.contains('eliminar-button')) {
+    console.log('presionando eliminar');
+    const kataIndex = event.target.getAttribute('data-kata');
+    const eliminacionExitosa = eliminarKata(kataIndex);
+    if (eliminacionExitosa) {
+      alert('Kata eliminada con éxito');
+      cargarNombres();
+    } else {
+      console.log('No se pudo eliminar la Kata. Verifica el índice proporcionado.');
+    }
+  }
+});
 
+
+crearKataButton.addEventListener('click', function() {
+  manejarCargaFormulario(formularios.cargarFormularioCreacionKata(), 'Formulario de creación cargado con éxito');
+});
+}
