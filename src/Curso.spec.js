@@ -1,4 +1,4 @@
-import { obtenerNombres, detallesCurso, crearCurso } from "./Curso.js";
+import{ obtenerNombres, detallesCurso, crearCurso } from "./Curso.js";
 
 describe("Creacion de Curso", () => {
     it("Obtener Posicion de la nueva Curso", () => {

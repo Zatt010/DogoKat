@@ -1,5 +1,6 @@
 
 class Curso{
+    
   constructor(nombre, detalle){
     this.nombre = nombre;
     this.detalle = detalle;
