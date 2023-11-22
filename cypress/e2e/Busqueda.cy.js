@@ -1,6 +1,11 @@
 describe("Criterios de busqueda", () => {
     it("Mostrar resultados de busqueda", () => {
-        cy.visit("/maestro.html");
+        cy.visit("/");
+        cy.get("#username").type("maestro");
+        cy.get("#password").type("123");
+        cy.get("#role").select("maestro");
+        cy.get("#login-button").click();
+        cy.url().should("include", "/maestro.html");
         cy.get("#busquedaInput").type("f");
         cy.get("#busquedaButton").click();
         cy.get(".nombres-katas")
@@ -8,7 +13,12 @@ describe("Criterios de busqueda", () => {
         .and("contain", "FooBarQix");
     });
     it("Mostrar busqueda no encontrada", () => {
-        cy.visit("/maestro.html");
+        cy.visit("/");
+        cy.get("#username").type("maestro");
+        cy.get("#password").type("123");
+        cy.get("#role").select("maestro");
+        cy.get("#login-button").click();
+        cy.url().should("include", "/maestro.html");
         cy.get("#busquedaInput").type("m");
         cy.get("#busquedaButton").click();
         cy.get(".nombres-katas").should("contain", "Kata no encontrada");
