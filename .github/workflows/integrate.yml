@@ -26,7 +26,7 @@ jobs:
         uses: cypress-io/github-action@v4
         with:
           start: npm start
-          wait-on: "http://localhost:1234"
+          wait-on: "http://localhost:1234/maestro.html"
           wait-on-timeout: 100000
       #####
       #- name: Build for deploy
