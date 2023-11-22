@@ -1,4 +1,4 @@
-import { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,modificarKata } from "./Kata.js";
+import { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,modificarKata,eliminarKata } from "./Kata.js";
 
 
 describe("Obtener Lista de Kata", () => {
@@ -65,5 +65,12 @@ describe("Modificar Kata", () => {
     const indexFueraDeLimites = 10;
     const exitoModificacion = modificarKata(indexFueraDeLimites, "NuevoNombre", "Detalle cambiado","Avanzado","Juegos","phyton");
     expect(exitoModificacion).toBe(false);
+  });
+});
+
+describe("Eliminando Katas", () => {
+  it("Eliminar la primera Kata", () => {
+    eliminarKata();
+    expect(obtenerNombres()).toEqual(["KataFizzBuzz","FooBarQix","KataPotter","Kata Try"]);
   });
 });
