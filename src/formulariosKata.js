@@ -1,6 +1,7 @@
 
 import { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,modificarKata,lenguajekata } from "./Kata.js";
 import ModificarKataView from '../views/modificarView';
+import creacionkataView from "../views/creacionkataView.js";
 
 export function cargarFormularioModificacion(kataIndex) {
   console.log('Cargando formulario de modificación para kataIndex:', kataIndex);
@@ -50,29 +51,22 @@ function manejarSubmitModificacion(event, resolve, reject) {
   }
 }
 
-export function cargarFormularioCreacionKata() {//CREAR UNA KATA
+export function cargarFormularioCreacionKata() {
   return new Promise((resolve, reject) => {
-    fetch('./creacionKata.html')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`Error de red: ${response.status}`);
-        }
-        return response.text();
-      })
-      .then(html => {
-        console.log('Formulario de creación cargado con éxito');
-        const formularioKata = document.getElementById('formulario-kata');
-        formularioKata.innerHTML = html;
-        formularioKata.style.display = 'block';
-        const crearKataForm = document.getElementById('kata-form');
-        crearKataForm.addEventListener('submit', event => {
-          manejarSubmitCreacionKata(event, resolve, reject);
-        });
-      })
-      .catch(error => {
-        console.error('Error al cargar el formulario:', error);
-        reject(false); // Rechaza la promesa en caso de error
+    try {
+      const creacionKataView = new creacionkataView();
+      const formularioKata = document.getElementById('formulario-kata');
+      formularioKata.innerHTML = creacionKataView.render();
+
+      formularioKata.style.display = 'block';
+      const crearKataForm = document.getElementById('kata-form');
+      crearKataForm.addEventListener('submit', event => {
+        manejarSubmitCreacionKata(event, resolve, reject);
       });
+    } catch (error) {
+      console.error('Error al cargar el formulario:', error);
+      reject(false);
+    }
   });
 }
 

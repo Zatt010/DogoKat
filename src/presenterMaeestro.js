@@ -123,7 +123,16 @@ import * as formularios from './formulariosKata.js';
       }
     }
   });
+  document.addEventListener('click', function (event) {
+    if (event.target.classList.contains('crear-button')) {
+      console.log('presionando crear');
+      const kataIndex = event.target.getAttribute('data-kata');
+      manejarCargaFormulario(formularios.cargarFormularioCreacionKata(), 'Formulario de modificación cargado con éxito');
+    }
+  });
 
   crearKataButton.addEventListener('click', function() {
     manejarCargaFormulario(formularios.cargarFormularioCreacionKata(), 'Formulario de creación cargado con éxito');
   });
+  
+  
