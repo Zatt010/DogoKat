@@ -1,11 +1,7 @@
 describe("Modificacion y anadir Katas", () => {
     it("Agregar nueva Kata", () => {
         cy.visit("/");
-        cy.get("#username").type("maestro");
-        cy.get("#password").type("123");
-        cy.get("#role").select("maestro");
-        cy.get("#login-button").click();
-        cy.url().should("include", "/maestro.html");
+        cy.get('a[href="/maestro"]').click();
         cy.get("#crearKata").click();
         cy.get("#nombre").type("Kataprueba");
         cy.get("#detalle").type("Kataprueba");
@@ -33,11 +29,7 @@ describe("Modificacion y anadir Katas", () => {
     
     it("Modificar una Kata", () => {
         cy.visit("/");
-        cy.get("#username").type("maestro");
-        cy.get("#password").type("123");
-        cy.get("#role").select("maestro");
-        cy.get("#login-button").click();
-        cy.url().should("include", "/maestro.html");
+        cy.get('a[href="/maestro"]').click();
         cy.get('.modificar-button').first().click();
         cy.get("#nuevoNombre").clear().type("NuevoNombre");
         cy.get("#nuevoDetalle").clear().type("NuevoDetalle");

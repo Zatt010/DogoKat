@@ -1,11 +1,18 @@
-import { obtenerNombres, detallesKata, eliminarKata } from "./Kata.js";
-import { busquedaSimple } from './Busqueda.js';
-import { agruparKatasPorDificultad, agruparKatasPorCategoria, agruparKatasPorLenguaje } from './Filtros.js';
+import {
+  obtenerNombres,
+  detallesKata,
+  eliminarKata
+} from "./Kata.js";
+import {
+  busquedaSimple
+} from './Busqueda.js';
+import {
+  agruparKatasPorDificultad,
+  agruparKatasPorCategoria,
+  agruparKatasPorLenguaje
+} from './Filtros.js';
 import * as formularios from './formulariosKata.js';
 
-document.addEventListener('DOMContentLoaded', inicializarApp);
-
-function inicializarApp() {
   console.log('presenter maestro cargado')
   const nombresKatasDiv = document.querySelector('.nombres-katas');
   const detalleKataDiv = document.querySelector('.detalle-Kata');
@@ -51,7 +58,7 @@ function inicializarApp() {
     console.log('Lista HTML generada:', listaHTML);
     nombresKatasDiv.innerHTML = `<ul>${listaHTML}</ul>`;
     nombresKatasDiv.addEventListener('click', manejarClickNombre);
-}
+  }
 
   function manejarClickNombre(event) {
     if (event.target.tagName === 'A') {
@@ -80,44 +87,43 @@ function inicializarApp() {
     return text.charAt(0).toUpperCase() + text.slice(1);
   }
 
-function manejarCargaFormulario(promesa) {
-  promesa
-    .then(resultado => {
-      if (resultado) {
-        console.log('recibido', resultado);
+  function manejarCargaFormulario(promesa) {
+    promesa
+      .then(resultado => {
+        if (resultado) {
+          console.log('recibido', resultado);
+          cargarNombres();
+        } else {
+          console.log('no recibido', resultado);
+        }
+      })
+      .catch(error => {
+        console.error('Error al cargar el formulario:', error);
+      });
+  }
+
+  document.addEventListener('click', function (event) {
+    if (event.target.classList.contains('modificar-button')) {
+      console.log('presionando modificar');
+      const kataIndex = event.target.getAttribute('data-kata');
+      manejarCargaFormulario(formularios.cargarFormularioModificacion(kataIndex), 'Formulario de modificación cargado con éxito');
+    }
+  });
+
+  document.addEventListener('click', function (event) {
+    if (event.target.classList.contains('eliminar-button')) {
+      console.log('presionando eliminar');
+      const kataIndex = event.target.getAttribute('data-kata');
+      const eliminacionExitosa = eliminarKata(kataIndex);
+      if (eliminacionExitosa) {
+        alert('Kata eliminada con éxito');
         cargarNombres();
       } else {
-        console.log('no recibido', resultado);
+        console.log('No se pudo eliminar la Kata. Verifica el índice proporcionado.');
       }
-    })
-    .catch(error => {
-      console.error('Error al cargar el formulario:', error);
-    });
-}
-
-document.addEventListener('click', function (event) {
-  if (event.target.classList.contains('modificar-button')) {
-    console.log('presionando modificar');
-    const kataIndex = event.target.getAttribute('data-kata');
-    manejarCargaFormulario(formularios.cargarFormularioModificacion(kataIndex), 'Formulario de modificación cargado con éxito');
-  }
-});
-document.addEventListener('click', function (event) {
-  if (event.target.classList.contains('eliminar-button')) {
-    console.log('presionando eliminar');
-    const kataIndex = event.target.getAttribute('data-kata');
-    const eliminacionExitosa = eliminarKata(kataIndex);
-    if (eliminacionExitosa) {
-      alert('Kata eliminada con éxito');
-      cargarNombres();
-    } else {
-      console.log('No se pudo eliminar la Kata. Verifica el índice proporcionado.');
     }
-  }
-});
+  });
 
-
-crearKataButton.addEventListener('click', function() {
-  manejarCargaFormulario(formularios.cargarFormularioCreacionKata(), 'Formulario de creación cargado con éxito');
-});
-}
+  crearKataButton.addEventListener('click', function() {
+    manejarCargaFormulario(formularios.cargarFormularioCreacionKata(), 'Formulario de creación cargado con éxito');
+  });

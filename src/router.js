@@ -1,11 +1,12 @@
 import LoginView from '../views/loginView';
-
+import MaestroView from '../views/maestroView';
 const route = (event) => {
   handleLocation();
 };
 
 const routes = {
-  "/": new LoginView()
+  "/": new LoginView(),
+  "/maestro": new MaestroView(),
 };
 
 const handleLocation = async () => {
@@ -15,8 +16,12 @@ const handleLocation = async () => {
   document.getElementById("main-page").innerHTML = html;
 
   try {
-    // Ajusta la ruta del módulo según la estructura de tu proyecto
+    if (path == "/maestro") {
+      await import("./presenterMaeestro.js");
+    }
+    else if(path == "/"){
     await import("./presenterLogin.js");
+    }
   } catch (error) {
     console.error("Error al cargar el presentador:", error);
   }
