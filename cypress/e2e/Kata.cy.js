@@ -10,11 +10,7 @@ describe("katas", () => {
     });
     it("Eliminar Katas", () => {
         cy.visit("/");
-        cy.get("#username").type("maestro");
-        cy.get("#password").type("123");
-        cy.get("#role").select("maestro");
-        cy.get("#login-button").click();
-        cy.url().should("include", "/maestro.html");
+        cy.get('a[href="/maestro"]').click();
         cy.get('.eliminar-button').first().click();
         const nombresEsperados = ["KataFizzBuzz", "FooBarQix", "KataPotter"];
         cy.get('.nombres-katas a').each(($enlace, index) => {
