@@ -16,5 +16,12 @@ describe("Mostrar katas por categoria", () => {
         cy.get(".nombres-katas").should("contain","KataFizzBuzz");
     
     });
+    it("Deberia mostrar todos los kata de la categoria 'Algoritmos'", () => {
+        cy.visit("/");
+        cy.get('a[href="/maestro"]').click();
+            cy.get("#categoriaSelect").select("Algoritmos");
+        cy.get(".nombres-katas").should("contain","KataPotter");
+    
+    });
     
 });
