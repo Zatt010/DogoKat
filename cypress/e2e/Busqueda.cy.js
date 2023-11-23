@@ -1,6 +1,7 @@
 describe("Criterios de busqueda", () => {
     it("Mostrar resultados de busqueda", () => {
         cy.visit("/");
+        cy.get('a[href="/maestro"]').click();
         cy.get("#busquedaInput").type("f");
         cy.get("#busquedaButton").click();
         cy.get(".nombres-katas")
