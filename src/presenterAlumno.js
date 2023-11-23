@@ -1,10 +1,20 @@
 import { obtenerNombres, detallesKata, crearKata } from './Kata.js';
 import { busquedaSimple } from './Busqueda.js';
 import { agruparKatasPorDificultad, agruparKatasPorCategoria, agruparKatasPorLenguaje } from './Filtros.js';
+import { crearUsu } from './login.js';
+// presenter.js
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('Presenter.js se ha ejecutado correctamente');
+  // Coloca el resto de tu lógica aquí
+});
 
 document.addEventListener('DOMContentLoaded', inicializarApp);
 
+
 function inicializarApp() {
+  // Después de realizar alguna validación u operación
+
+
   const nombresKatasDiv = document.querySelector('.nombres-katas');
   const detalleKataDiv = document.querySelector('.detalle-Kata');
   const busquedaButton = document.getElementById('busquedaButton');
@@ -13,10 +23,14 @@ function inicializarApp() {
   const lenguajeSelect = document.getElementById('lenguajeSelect');
   const categoriaSelect = document.getElementById('categoriaSelect');
   const crearKataButton = document.getElementById('crearKata');
+  // Agrega un evento click al botón para llamar a la función login
+
+ 
 
   cargarNombres();
 
-  crearKataButton.addEventListener('click', cargarFormularioKata);
+
+
   busquedaButton.addEventListener('click', realizarBusqueda);
 
   dificultadSelect.addEventListener('change', () => mostrarKatasPorCriterio(dificultadSelect.value, agruparKatasPorDificultad()));
@@ -57,43 +71,7 @@ function inicializarApp() {
     }
   }
 
-  function cargarFormularioKata() {
-    fetch('./creacionKata.html')
-      .then(response => response.text())
-      .then(html => {
-        document.getElementById('formulario-kata').innerHTML = html;
-        const crearKataForm = document.getElementById('kata-form');
-        crearKataForm.addEventListener('submit', manejarSubmitFormulario);
-      })
-      .catch(error => console.error('Error al cargar el formulario:', error));
-  }
-
-  function manejarSubmitFormulario(event) {
-    event.preventDefault();
-
-    const nombreKataInput = document.getElementById('nombre');
-    const detalleKataInput = document.getElementById('detalle');
-    const dificultadKataSelect = document.getElementById('dificultad');
-    const categoriaKataSelect = document.getElementById('categoria');
-    const lenguajeKataSelect = document.getElementById('lenguaje');
-
-    const nombreKata = nombreKataInput.value;
-    const detalleKata = detalleKataInput.value;
-    const dificultadKata = dificultadKataSelect.value;
-    const categoriaKata = categoriaKataSelect.value;
-    const lenguajeKata = lenguajeKataSelect.value;
-
-    const kataCreada = crearKata(nombreKata, detalleKata, dificultadKata, categoriaKata, lenguajeKata);
-
-    if (kataCreada) {
-      alert('Kata creada con éxito');
-      const formularioKata = document.getElementById('formulario-kata');
-      formularioKata.style.display = 'none';
-      cargarNombres();
-    } else {
-      alert('Error al crear la Kata');
-    }
-  }
+  
 
   function mostrarDetallesDeKata(kataIndex) {
     const detalles = detallesKata(kataIndex);
@@ -104,3 +82,5 @@ function inicializarApp() {
     return text.charAt(0).toUpperCase() + text.slice(1);
   }
 }
+
+

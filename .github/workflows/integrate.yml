@@ -26,12 +26,13 @@ jobs:
         uses: cypress-io/github-action@v4
         with:
           start: npm start
-          wait-on: "http://localhost:1234"
+          wait-on: "http://localhost:1234/maestro.html"
+          wait-on-timeout: 100000
       #####
       #- name: Build for deploy
       #  run: npm run build
       #- name: Deploy to GitHub Pages
-      #  if: success()
+      # if: success()
       #  uses: crazy-max/ghaction-github-pages@v2
       #  with:
       #    target_branch: gh-pages

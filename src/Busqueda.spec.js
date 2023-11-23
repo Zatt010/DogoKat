@@ -10,4 +10,8 @@ describe("Busqueda de Kata por nombre", () => {
         const result = busquedaSimple("ines");
         expect(result).toEqual([]);
     });
+    it("Busqueda con maximo de letras permitidas", () => {
+        const result = busquedaSimple("ineasdgsdgjka sdgkj m asdgkjn gkdsdas");
+        expect(result).toEqual(false);
+    });
 });
