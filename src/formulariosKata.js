@@ -1,37 +1,31 @@
 
 import { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,modificarKata,lenguajekata } from "./Kata.js";
-//FORMULARIOS DE KATA
-export function cargarFormularioModificacion(kataIndex) {//MODIFICAR KATA
+import ModificarKataView from '../views/modificarView';
+
+export function cargarFormularioModificacion(kataIndex) {
   console.log('Cargando formulario de modificación para kataIndex:', kataIndex);
   return new Promise((resolve, reject) => {
-    fetch('./modificarKata.html')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`Error de red: ${response.status}`);
-        }
-        return response.text();
-      })
-      .then(html => {
-        console.log('Formulario cargado con éxito');
-        const formularioKata = document.getElementById('formulario-kata');
-        formularioKata.innerHTML = html;
-        formularioKata.style.display = 'block'; // Asegúrate de que el formulario se muestre
-        document.getElementById('index').value = kataIndex;
-        document.getElementById('nuevoNombre').value = obtenerNombres()[kataIndex];
-        document.getElementById('nuevoDetalle').value = detallesKata(kataIndex);
-        document.getElementById('nuevaDificultad').value = dificultadKata(kataIndex);
-        document.getElementById('nuevaCategoria').value = categoriaKata(kataIndex);
-        document.getElementById('nuevoLenguaje').value = lenguajekata(kataIndex);
+    try {
+      const modificarKataView = new ModificarKataView();
+      const formularioKata = document.getElementById('formulario-kata');
+      formularioKata.innerHTML = modificarKataView.render();
 
-        const modificarKataForm = document.getElementById('modificar-kata-form');
-        modificarKataForm.addEventListener('submit', event => {
-          manejarSubmitModificacion(event, resolve, reject);
-        });
-      })
-      .catch(error => {
-        console.error('Error al cargar el formulario:', error);
-        reject(false); // Rechaza la promesa en caso de error
+      formularioKata.style.display = 'block';
+      document.getElementById('index').value = kataIndex;
+      document.getElementById('nuevoNombre').value = obtenerNombres()[kataIndex];
+      document.getElementById('nuevoDetalle').value = detallesKata(kataIndex);
+      document.getElementById('nuevaDificultad').value = dificultadKata(kataIndex);
+      document.getElementById('nuevaCategoria').value = categoriaKata(kataIndex);
+      document.getElementById('nuevoLenguaje').value = lenguajekata(kataIndex);
+
+      const modificarKataForm = document.getElementById('modificar-kata-form');
+      modificarKataForm.addEventListener('submit', event => {
+        manejarSubmitModificacion(event, resolve, reject);
       });
+    } catch (error) {
+      console.error('Error al cargar el formulario:', error);
+      reject(false); // Rechaza la promesa en caso de error
+    }
   });
 }
 

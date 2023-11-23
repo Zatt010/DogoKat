@@ -1,10 +1,7 @@
-<html>
-<head>
-    <title>KitPatitasKat TDD - Modificación de Kata</title>
-</head>
-<body>
-    <h1>Modificación de Kata</h1>
-    <form id="modificar-kata-form">
+export default class ModificarKataView {
+    render() {
+    return `<h1>Modificación de Kata</h1>
+        <form id="modificar-kata-form">
         <input type="hidden" id="index" name="index">
         <label for="nuevoNombre">Nuevo Nombre de la Kata:</label>
         <input type="text" id="nuevoNombre" name="nuevoNombre" required>
@@ -33,7 +30,9 @@
             <option value="phyton">phyton</option>
             <option value="javascript">javascript</option>
         </select>
+
         <button type="submit" id="modificarKataButton">Modificar Kata</button>
-    </form>
-</body>
-</html>
+        </form>`;
+    }
+  }
+  
