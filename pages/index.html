@@ -1,32 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login</title>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nombre de tu Aplicación</title>
 </head>
 <body>
-    <h1 style="text-align: center;">LOGIN</h1>
-<div style="text-align: center;">
-    <form id="login-form" class="flexbox-align__content">
+  <nav>
+    <a href="/">Inicio</a>
+    <a href="/maestro">Maestro</a>
+    <a href="/alumno">Alumno</a>
+    <!-- Otros enlaces según sea necesario -->
+  </nav>
 
-    <label for="username">Nombre:</label>
-    <input type="text" id="username" name="username" required>
-        <br></br>
-    <label for="password">Contraseña:</label>
-    <input type="password" id="password" name="password" required>
-        <br></br>
-    <label for="role">Selecciona tu rol:</label>
-    <select id="role" name="role">
-        <option value="maestro">Maestro</option>
-        <option value="alumno">Alumno</option>
-    </select>
-    <button style="display:block-inline"  type="button" id="login-button">Iniciar sesión</button>
+  <div id="main-page"></div>
 
-    </form>
-    </div>
-
-    <script  type="module" src="../src/presenterLogin.js"></script>
+  <script type="module" src="../src/router.js"></script>
 </body>
 </html>
