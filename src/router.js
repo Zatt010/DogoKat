@@ -1,5 +1,6 @@
 import LoginView from '../views/loginView';
 import MaestroView from '../views/maestroView';
+import alumnoView from '../views/alumnoView.js';
 const route = (event) => {
   handleLocation();
 };
@@ -7,6 +8,7 @@ const route = (event) => {
 const routes = {
   "/": new LoginView(),
   "/maestro": new MaestroView(),
+  "/alumno": new alumnoView(),
 };
 
 const handleLocation = async () => {
@@ -21,6 +23,9 @@ const handleLocation = async () => {
     }
     else if(path == "/"){
     await import("./presenterLogin.js");
+    }
+    if(path == "/alumno"){
+      await import("./presenterAlumno.js")
     }
   } catch (error) {
     console.error("Error al cargar el presentador:", error);
