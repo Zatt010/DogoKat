@@ -26,6 +26,30 @@ describe("Modificacion y anadir Katas", () => {
         cy.get(".nombres-katas").should("contain", "FooBarQix");
         cy.get(".nombres-katas").should("contain", "Kataprueba");
     });
+    it("Recargar la página para mostrar las katas actualizadas", () => {
+        cy.visit("/");
+        cy.get('a[href="/maestro"]').click();
+        cy.get("#crearKata").click();
+        cy.get("#nombre").type("Kataprueba2");
+        cy.get("#detalle").type("Kataprueba2");
+        cy.get("#dificultad").select("Intermedio");
+        cy.get("#categoria").select("Tecnologia");
+        cy.on('window:alert', (str) => {
+            // Verificar el contenido de la alerta
+            expect(str).to.equal('Kata creada con éxito');
+        });
+        cy.get("#crearKataButton").click();
+    
+        cy.reload();
+    
+        // Verificar que los nombres se han actualizado correctamente
+        const nombresEsperados = ["KataBankOCR", "KataFizzBuzz", "FooBarQix", "KataPotter", "Kataprueba2"];
+        cy.get('.nombres-katas a').each(($enlace, index) => {
+            const nombreEsperado = nombresEsperados[index];
+            expect($enlace.text()).to.equal(nombreEsperado);
+        });
+    });
+    
     
     it("Modificar una Kata", () => {
         cy.visit("/");

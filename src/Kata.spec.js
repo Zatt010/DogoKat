@@ -1,4 +1,4 @@
-import { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,modificarKata,eliminarKata } from "./Kata.js";
+import { obtenerNombres, detallesKata, crearKata, dificultadKata, categoriaKata,modificarKata,eliminarKata,guardarKatasEnLocalStorage } from "./Kata.js";
 
 
 describe("Obtener Lista de Kata", () => {
@@ -28,6 +28,13 @@ describe("Creacion de Kata", () => {
     const detalleKata = "Detalles de la nueva kata de prueba";
     const resultado = crearKata(nombreKata, detalleKata);
     expect(resultado).toBe(false);
+  });
+  it("Obtener Posicion de la nueva Kata", () => {
+    const nombreKata = "Kata Try";
+    const detalleKata = "Detalles de la nueva kata de prueba";
+    const resultado = crearKata(nombreKata, detalleKata);
+    guardarKatasEnLocalStorage(); 
+    expect(resultado).toBe(true);
   });
 });
 
@@ -71,7 +78,7 @@ describe("Modificar Kata", () => {
 describe("Eliminando Katas", () => {
   it("Eliminar la primera Kata", () => {
     eliminarKata(0);
-    expect(obtenerNombres()).toEqual(["KataFizzBuzz","FooBarQix","KataPotter","Kata Try"]);
+    expect(obtenerNombres()).toEqual(["KataFizzBuzz","FooBarQix","KataPotter","Kata Try","Kata Try"]);
   });
   it("Eliminar Kata que no existe en el array", () => {
     const resultado = eliminarKata(10);
